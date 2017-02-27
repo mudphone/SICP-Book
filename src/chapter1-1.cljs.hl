@@ -1,4 +1,4 @@
-(page "chapter1.html")
+(page "chapter1-1.html")
 
 ;; Exercise 1.1
 (def ex1-1a (cell 10))
@@ -37,6 +37,51 @@
 (defn high-sum-of-squares [x y z]
   (apply sum-of-squares (drop 1 (sort [x y z]))))
 (def ex1-3 (cell (high-sum-of-squares 1 3 5)))
+
+;; Exercise 1.7
+(defn average [x y]
+  (/ (+ x y) 2))
+
+(defn improve [guess x]
+  (average guess (/ x guess)))
+
+(defn abs [x]
+  (if (> x 0) x (* -1 x)))
+
+(defn pct-change [x y]
+  (/ (abs (- x y)) y))
+
+(defn good-enough? [last-guess guess x]
+  (< (pct-change last-guess guess) 0.001))
+
+(defn sqrt-iter
+  ([guess x]
+   (sqrt-iter (* 2.0 guess) guess x))
+  ([last-guess guess x]
+   (if (good-enough? last-guess guess x)
+     guess
+     (sqrt-iter guess (improve guess x) x))))
+
+(defn sqrt [x]
+  (sqrt-iter 1.0 x))
+
+;; Exercise 1.8
+(defn improve-cube [guess x]
+  (/ (+ (/ x (square guess))
+        (* 2 guess))
+     3))
+
+(defn cube-rt-iter
+  ([guess x]
+   (cube-rt-iter (* 2.0 guess) guess x))
+  ([last-guess guess x]
+   (if (good-enough? last-guess guess x)
+     guess
+     (cube-rt-iter guess (improve-cube guess x) x))))
+
+(defn cube-rt [x]
+  (cube-rt-iter 1.0 x))
+
 
 (html
   (head)
@@ -85,4 +130,18 @@
 
     (h1 "Exercise 1.5")
     (ul
-      (li (text "Applicative order evaluation results in an infinite loop. Normal order evaluation would result in `0`.")))))
+      (li (text "Applicative order evaluation results in an infinite loop. Normal order evaluation would result in `0`.")))
+
+    (h1 "Exercise 1.6")
+    (ul
+      (li (text "Applicative order evaluation results in an infinite loop (again). `new-if` is a function (not a macro) so the operands are evaluated, resulting in `sqrt-iter` calling itself.")))
+
+    (h1 "Exercise 1.7")
+    (ul
+      (li (pre (code "(sqrt 4) => ") (sqrt 4)))
+      (li (pre (code "(sqrt 25) => ") (sqrt 25))))
+
+    (h1 "Exercise 1.8")
+    (ul
+      (li (pre (code "(cube-rt 8) => ") (cube-rt 8)))
+      (li (pre (code "(cube-rt 125) => ") (cube-rt 125))))))
