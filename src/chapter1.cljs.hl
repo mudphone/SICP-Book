@@ -6,23 +6,25 @@
 (def ex1-1c (cell (- 9 1)))
 (def ex1-1d (cell (/ 6 2)))
 (def ex1-1e (cell (+ (* 2 4) (- 4 6))))
-(def ex1-1f (cell (def xa 3)))
-(def ex1-1g (cell (def xb (+ xa 1) )))
-(def ex1-1h (cell (+ xa xb (* xa xb))))
-(def ex1-1i (cell (= xa xb)))
-(def ex1-1j (cell (if (and (> xb xa) (< xb (* xa xb)))
-                    xb
-                    xa)))
-(def ex1-1k (cell (cond (= xa 4) 6
-                        (= xb 4) (+ 6 7 xa)
-                        :else 25)))
-(def ex1-1l (cell (+ 2 (if (> xb xa)
-                         xb
-                         xa))))
-(def ex1-1m (cell (* (cond (> xa xb) xa
-                           (< xa xb) xb
-                           :else -1)
-                     (+ xa 1))))
+(def xa (cell 3))
+(def xb (cell= (+ xa 1)))
+;; (def ex1-1f (cell= xa))
+;; (def ex1-1g (cell= xb))
+(def ex1-1h (cell= (+ xa xb (* xa xb))))
+(def ex1-1i (cell= (= xa xb)))
+(def ex1-1j (cell= (if (and (> xb xa) (< xb (* xa xb)))
+                     xb
+                     xa)))
+(def ex1-1k (cell= (cond (= xa 4) 6
+                         (= xb 4) (+ 6 7 xa)
+                         :else 25)))
+(def ex1-1l (cell= (+ 2 (if (> xb xa)
+                          xb
+                          xa))))
+(def ex1-1m (cell= (* (cond (> xa xb) xa
+                            (< xa xb) xb
+                            :else -1)
+                      (+ xa 1))))
 
 ;; Exercise 1.2
 (def ex1-2 (cell (/ (+ 5 (/ 1 4) (- 2 (- 3 (+ 6 (/ 1 3)))))
@@ -46,8 +48,8 @@
       (li (code "(- 9 1) => ") ex1-1c)
       (li (code "(/ 6 2) => ") ex1-1d)
       (li (code "(+ (* 2 4) (- 4 6)) => ") ex1-1e)
-      (li (code "(def xa 3) => ") ex1-1f)
-      (li (code "(def xb (+ xa 1)) => ") ex1-1g)
+      (li (code "(cell 3) => ") xa)
+      (li (code "(cell= (+ xa 1)) => ") xb)
       (li (code "(+ xa xb (* xa xb)) => ") ex1-1h)
       (li (pre (code "(= xa xb) => ") (text "~{ex1-1i}")))
       (li (pre (code "(if (and 
