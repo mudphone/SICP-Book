@@ -1,0 +1,10 @@
+(page "chapter1-2.html")
+
+;; Exercise 1.9
+
+(html
+  (head)
+  (body
+    (h1 "Exercise 1.9")
+    (ul
+      (li (text "...")))))
