@@ -83,6 +83,4 @@
 
     (h1 "Exercise 1.5")
     (ul
-      (li (text "Applicative order evaluation results in an infinite loop. Normal order evaluation would result in `0`.")))
-    )
-  )
+      (li (text "Applicative order evaluation results in an infinite loop. Normal order evaluation would result in `0`.")))))
