@@ -1,0 +1,88 @@
+(page "chapter1.html")
+
+;; Exercise 1.1
+(def ex1-1a (cell 10))
+(def ex1-1b (cell (+ 5 3 4)))
+(def ex1-1c (cell (- 9 1)))
+(def ex1-1d (cell (/ 6 2)))
+(def ex1-1e (cell (+ (* 2 4) (- 4 6))))
+(def ex1-1f (cell (def xa 3)))
+(def ex1-1g (cell (def xb (+ xa 1) )))
+(def ex1-1h (cell (+ xa xb (* xa xb))))
+(def ex1-1i (cell (= xa xb)))
+(def ex1-1j (cell (if (and (> xb xa) (< xb (* xa xb)))
+                    xb
+                    xa)))
+(def ex1-1k (cell (cond (= xa 4) 6
+                        (= xb 4) (+ 6 7 xa)
+                        :else 25)))
+(def ex1-1l (cell (+ 2 (if (> xb xa)
+                         xb
+                         xa))))
+(def ex1-1m (cell (* (cond (> xa xb) xa
+                           (< xa xb) xb
+                           :else -1)
+                     (+ xa 1))))
+
+;; Exercise 1.2
+(def ex1-2 (cell (/ (+ 5 (/ 1 4) (- 2 (- 3 (+ 6 (/ 1 3)))))
+                    (* 3 (- 6 2) (- 2 7)))))
+
+;; Exercise 1.3
+(defn square [x] (* x x))
+(defn sum-of-squares [x y]
+  (+ (square x) (square y)))
+(defn high-sum-of-squares [x y z]
+  (apply sum-of-squares (drop 1 (sort [x y z]))))
+(def ex1-3 (cell (high-sum-of-squares 1 3 5)))
+
+(html
+  (head)
+  (body
+    (h1 "Exercise 1.1")
+    (ul
+      (li (code "10 => ") ex1-1a)
+      (li (code "(+ 5 3 4) => ") ex1-1b)
+      (li (code "(- 9 1) => ") ex1-1c)
+      (li (code "(/ 6 2) => ") ex1-1d)
+      (li (code "(+ (* 2 4) (- 4 6)) => ") ex1-1e)
+      (li (code "(def xa 3) => ") ex1-1f)
+      (li (code "(def xb (+ xa 1)) => ") ex1-1g)
+      (li (code "(+ xa xb (* xa xb)) => ") ex1-1h)
+      (li (pre (code "(= xa xb) => ") (text "~{ex1-1i}")))
+      (li (pre (code "(if (and 
+      (> xb xa) 
+      (< xb (* xa xb)))
+      xb
+      xa) => ") ex1-1j))
+      (li (pre (code "(cond (= xa 4) 6
+      (= xb 4) (+ 6 7 xa)
+      :else 25) => ") ex1-1k))
+      (li (pre (code "(+ 2 (if 
+       (> xb xa)
+       xb
+       xa)) => ") ex1-1l))
+      (li (pre (code "(* (cond (> xa xb) xa
+         (< xa xb) xb
+         :else -1)
+   (+ xa 1)) => ") ex1-1m)))
+
+    (h1 "Exercise 1.2")
+    (ul
+      (li (pre (code "(/ (+ 5 (/ 1 4)
+        (- 2 (- 3 (+ 6 (/ 1 3)))))
+   (* 3 (- 6 2) (- 2 7))) => ") ex1-2)))
+
+    (h1 "Exercise 1.3")
+    (ul
+      (li (pre (code "(high-sum-of-squares 1 3 5) => ") ex1-3)))
+
+    (h1 "Exercise 1.4")
+    (ul
+      (li (text "`a-plus-abs-b` evals to `+` if `b` is positive, and `-` if b is negative. Thus, `a` is added to the absolute value of `b`.")))
+
+    (h1 "Exercise 1.5")
+    (ul
+      (li (text "Applicative order evaluation results in an infinite loop. Normal order evaluation would result in `0`.")))
+    )
+  )
