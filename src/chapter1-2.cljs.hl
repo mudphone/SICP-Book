@@ -75,7 +75,6 @@
 (defc f2-10 (f2 10))
 
 ;; Exercise 1.12
-
 (defn row
   ([n]
    (cond (= n 1) [1]
@@ -88,9 +87,7 @@
                     1
                     (+ (nth last-row (dec %1))
                        (nth last-row %1)))
-                 (repeat n 1)))
-   )
-  ) 
+                 (repeat n 1)))))
 
 
 (html
