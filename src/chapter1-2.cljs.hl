@@ -89,6 +89,24 @@
                        (nth last-row %1)))
                  (repeat n 1)))))
 
+;; Exercise 1.13
+(def phi (/ (+ 1
+               (Math/sqrt 5))
+            2))
+
+(def psi (/ (- 1
+               (Math/sqrt 5))
+            2))
+
+(defn fib-nearest-phi [n]
+  (/ (Math/pow phi n)
+     (Math/sqrt 5)))
+
+(defn fib-phi-psi [n]
+  (/ (- (Math/pow phi n)
+        (Math/pow psi n))
+     (Math/sqrt 5)))
+
 
 (html
   (head)
@@ -239,4 +257,12 @@
       (li (pre (code "(row 2) => ") (str (row 2))))
       (li (pre (code "(row 3) => ") (str (row 3))))
       (li (pre (code "(row 4) => ") (str (row 4))))
-      (li (pre (code "(row 5) => ") (str (row 5)))))))
+      (li (pre (code "(row 5) => ") (str (row 5)))))
+    (h1 "Exercise 1.13")
+    (ul
+      (li (pre (code "(fib-nearest-phi 4) => ") (fib-nearest-phi 4)))
+      (li (pre (code "(fib-nearest-phi 5) => ") (fib-nearest-phi 5)))
+      (li (pre (code "(fib-nearest-phi 6) => ") (fib-nearest-phi 6)))
+      (li (pre (code "(fib-phi-psi 4) => ") (fib-phi-psi 4)))
+      (li (pre (code "(fib-phi-psi 5) => ") (fib-phi-psi 5)))
+      (li (pre (code "(fib-phi-psi 6) => ") (fib-phi-psi 6))))))
