@@ -74,6 +74,23 @@
 (defc f2-9 (f2 9))
 (defc f2-10 (f2 10))
 
+;; Exercise 1.12
+
+(defn row
+  ([n]
+   (cond (= n 1) [1]
+         (= n 2) [1 1]
+         :else (row (row (dec n))
+                    n)))
+  ([last-row n]
+   (vec
+    (map-indexed #(if (or (= %1 0) (= %1 (dec n)))
+                    1
+                    (+ (nth last-row (dec %1))
+                       (nth last-row %1)))
+                 (repeat n 1)))
+   )
+  ) 
 
 
 (html
@@ -218,4 +235,11 @@
       (li (pre (code "(f2 5) => ") f2-5))
       (li (pre (code "(f2 6) => ") f2-6))
       (li (pre (code "(f2 9) => ") f2-9))
-      (li (pre (code "(f2 10) => ") f2-10)))))
+      (li (pre (code "(f2 10) => ") f2-10)))
+    (h1 "Exercise 1.12")
+    (ul
+      (li (pre (code "(row 1) => ") (str (row 1))))
+      (li (pre (code "(row 2) => ") (str (row 2))))
+      (li (pre (code "(row 3) => ") (str (row 3))))
+      (li (pre (code "(row 4) => ") (str (row 4))))
+      (li (pre (code "(row 5) => ") (str (row 5)))))))
