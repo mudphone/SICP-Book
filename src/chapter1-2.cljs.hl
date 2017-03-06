@@ -55,13 +55,6 @@
 (defn f2 [n]
   (f2-iter [0 0 0] 0 n))
 
-(defc f2-0 (f2 0))
-(defc f2-1 (f2 1))
-(defc f2-5 (f2 5))
-(defc f2-6 (f2 6))
-(defc f2-9 (f2 9))
-(defc f2-10 (f2 10))
-
 (defc f1-0 (f1 0))
 (defc f1-1 (f1 1))
 (defc f1-2 (f1 2))
@@ -73,6 +66,14 @@
 (defc f1-8 (f1 8))
 (defc f1-9 (f1 9))
 (defc f1-10 (f1 10))
+
+(defc f2-0 (f2 0))
+(defc f2-1 (f2 1))
+(defc f2-5 (f2 5))
+(defc f2-6 (f2 6))
+(defc f2-9 (f2 9))
+(defc f2-10 (f2 10))
+
 
 
 (html
@@ -199,7 +200,7 @@
     (h1 "Exercise: Counting change")
     (ul
       (li (pre (code "(count-change 100) => ") cc-100)))
-    (h1 "Exercise: Counting change")
+    (h1 "Exercise 1.11")
     (ul
       (li (pre (code "(f1 0) => ") f1-0))
       (li (pre (code "(f1 1) => ") f1-1))
