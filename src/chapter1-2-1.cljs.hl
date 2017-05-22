@@ -1,4 +1,4 @@
-(page "chapter1-2.html")
+(page "chapter1-2-1.html")
 
 ;; Exercise 1.10
 (defn ack [x y]
@@ -37,7 +37,7 @@
 (defn f1 [n]
   (cond (< n 3) n
         :else (+ (f1 (- n 1))
-                 (* 2 (f1 (- n 2)))
+;32;31M                 (* 2 (f1 (- n 2)))
                  (* 3 (f1 (- n 3))))))
 
 (defn f2-result [[n-1 n-2 n-3] count]
