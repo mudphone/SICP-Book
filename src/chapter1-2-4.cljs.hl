@@ -34,7 +34,7 @@
 
 (defc it-*-3-5 (it-* 3 5))
 
-;; Exercise 2.19
+;; Exercise 1.19
 (defn fib-iter [a b p q count]
   (cond (= count 0) b
         (even? count) (fib-iter a

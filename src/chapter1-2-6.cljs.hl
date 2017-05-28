@@ -1,0 +1,81 @@
+(page "chapter1-2-6.html")
+
+;; Exercise 1.21
+
+(defn square [x] (* x x))
+
+(defn remainder [a b] (mod a b))
+
+(defn divides? [a b]
+  (= (remainder b a) 0))
+
+(defn find-divisor [n test-divisor]
+  (cond (> (square test-divisor) n) n
+        (divides? test-divisor n) test-divisor
+        :else (find-divisor n (+ test-divisor 1))))
+
+(defn smallest-divisor [n]
+  (find-divisor n 2))
+
+(defc smallest-divisor-199   (smallest-divisor 199))
+(defc smallest-divisor-1999  (smallest-divisor 1999))
+(defc smallest-divisor-19999 (smallest-divisor 19999))
+
+;; Exercise 1.22
+(defn prime? [n]
+  (= n (smallest-divisor n)))
+
+(defn runtime []
+  (.getTime (js/Date.)))
+
+(defn report-prime [n elapsed-time]
+  (println " *** finding prime" n "took:" elapsed-time))
+
+(defn start-prime-test [n start-time]
+  (print "started at: " start-time "\n")
+  (if (prime? n)
+    (report-prime n (- (runtime) start-time))))
+
+(defn timed-prime-test [n]
+  (start-prime-test n (runtime)))
+
+(defn search-for-primes [a b]
+  (println "searching from" a "to" b)
+  (doseq [n (filter odd? (range a (inc b)))]
+    (print "searching for" n " ")
+    (timed-prime-test n)))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Exercise 1.21")
+    (ul
+      (li (pre (code "
+(smallest divisor 199) =")) @smallest-divisor-199)
+      (li (pre (code "
+(smallest divisor 1999) =")) @smallest-divisor-1999)
+      (li (pre (code "
+(smallest divisor 19999) =")) @smallest-divisor-19999))
+    (h1 "Exercise 1.22")
+    (ul
+      (li "
+ *** finding prime 1009 took: 1
+ *** finding prime 1013 took: 2
+ *** finding prime 1019 took: 1")
+      (li "
+ *** finding prime 10007 took: 2
+ *** finding prime 10009 took: 3
+ *** finding prime 10037 took: 1")
+      (li "
+ *** finding prime 100003 took: 2
+ *** finding prime 100019 took: 1
+ *** finding prime 100043 took: 2")
+      (li "
+ *** finding prime 1000003 took: 0
+ *** finding prime 1000033 took: 1
+ *** finding prime 1000037 took: 1")
+      (li "
+ *** finding prime 10000019 took: 4
+ *** finding prime 10000079 took: 2
+ *** finding prime 10000103 took: 1"))))
