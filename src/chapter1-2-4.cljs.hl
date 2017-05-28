@@ -51,7 +51,7 @@
 (defn fib [n]
   (fib-iter 1 0 0 1 n))
 
-(defc clever-fib-120 (fib 120))
+(defc clever-fib-6 (fib 6))
 
 (html
   (head
@@ -73,4 +73,4 @@
     (h1 "Exercise 1.19")
     (ul
       (li (pre (code "
-(fib 120) = ")) @clever-fib-120))))
+(fib 6) = ")) @clever-fib-6))))
