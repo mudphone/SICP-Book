@@ -1,8 +1,8 @@
 (set-env!
  :dependencies '[[adzerk/boot-cljs          "1.7.228-2"]
-                 #_[adzerk/boot-cljs-repl     "0.3.3"  :scope "test"]
-                 #_[com.cemerick/piggieback   "0.2.1"  :scope "test"]
-                 #_[weasel                    "0.7.0"  :scope "test"]
+                 [adzerk/boot-cljs-repl     "0.3.3"  :scope "test"]
+                 [com.cemerick/piggieback   "0.2.1"  :scope "test"]
+                 [weasel                    "0.7.0"  :scope "test"]
                  [org.clojure/tools.nrepl   "0.2.12" :scope "test"]
                  [adzerk/boot-reload        "0.4.13"]
                  [hoplon/hoplon             "6.0.0-alpha17"]
@@ -15,7 +15,7 @@
 
 (require
  '[adzerk.boot-cljs         :refer [cljs]]
- #_'[adzerk.boot-cljs-repl    :refer [cljs-repl start-repl]]
+ '[adzerk.boot-cljs-repl    :refer [cljs-repl start-repl]]
  '[adzerk.boot-reload       :refer [reload]]
  '[hoplon.boot-hoplon       :refer [hoplon prerender]]
  '[tailrecursion.boot-jetty :refer [serve]]
@@ -29,7 +29,7 @@
     (speak)
     (hoplon)
     (reload)
-    ;(cljs-repl)
+    (cljs-repl)
     (cljs)
     (serve :port 8000)))
 
