@@ -11,4 +11,8 @@
 (simpsons cube 0 1 100) = ") @c/simpsons-cube-0-1-100))
       (li (pre (code "
 (simpsons cube 0 1 1000) = ") @c/simpsons-cube-0-1-1000)))
+    (h1 "Exercise 1.30")
+    (ul
+      (li (pre (code "
+(sum-iter cube 1 inc 10) = ") @c/iterative-sum-cubes-1-10)))
     ))
