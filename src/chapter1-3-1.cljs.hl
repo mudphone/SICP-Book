@@ -1,0 +1,14 @@
+(page "chapter1-3-1.html"
+  (:require [app.chapter1-3-1 :as c]))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Exercise 1.29")
+    (ul
+      (li (pre (code "
+(simpsons cube 0 1 100) = ") @c/simpsons-cube-0-1-100))
+      (li (pre (code "
+(simpsons cube 0 1 1000) = ") @c/simpsons-cube-0-1-1000)))
+    ))
