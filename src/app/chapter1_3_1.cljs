@@ -44,23 +44,36 @@
 (defc iterative-sum-cubes-1-10 (sum-iter cube 1 inc 10))
 
 ;; Exercise 1.31
-(defn prod [term a next b]
-  (let [iterr (fn [a result]
-                (if (> a b)
-                  result
-                  (recur (next a) (* (term a) result))))]
-    (iterr a 1)))
-
-(defn pi-prod [n]
+(defn pi-n [n prod]
   (let [evens-from-2 (apply concat (map (fn [x] [x x]) (iterate #(+ 2 %) 2)))
-        next-numerator (fn [n]
-                         (nth (drop 1 evens-from-2) n))
-        odds-from-3 (apply concat (map (fn [x] [x x]) (iterate #(+ 2 %) 3)))
-        next-denominator (fn [n]
-                           (nth odds-from-3 n))
-        term (fn [n]
-               (/ (next-numerator n)
-                  (next-denominator n)))]
+         next-numerator (fn [n]
+                          (nth (drop 1 evens-from-2) n))
+         odds-from-3 (apply concat (map (fn [x] [x x]) (iterate #(+ 2 %) 3)))
+         next-denominator (fn [n]
+                            (nth odds-from-3 n))
+         term (fn [n]
+                (/ (next-numerator n)
+                   (next-denominator n)))]
     (* 4 (prod term 0 inc n))))
 
+(defn prod-iterative [term a next b]
+  (let [go (fn [a result]
+             (if (> a b)
+               result
+               (recur (next a) (* (term a) result))))]
+    (go a 1)))
+
+(defn pi-prod [n]
+  (pi-n n prod-iterative))
+
 (defc pi-prod-1000 (pi-prod 1000))
+
+(defn prod-recursive [term a next b]
+  (if (> a b)
+    1
+    (* (term a) (prod-recursive term (next a) next b))))
+
+(defn pi-prod-recursive [n]
+  (pi-n n prod-recursive))
+
+(defc pi-prod-recursive-1000 (pi-prod-recursive 1000))

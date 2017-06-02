@@ -15,8 +15,12 @@
     (ul
       (li (pre (code "
 (sum-iter cube 1 inc 10) = ") @c/iterative-sum-cubes-1-10)))
-    (h1 "Exercise 1.31")
+    (h1 "Exercise 1.31: Iterative")
     (ul
       (li (pre (code "
 (pi-prod 1000) = ") @c/pi-prod-1000)))
+    (h1 "Exercise 1.31: Recursive")
+    (ul
+      (li (pre (code "
+(pi-prod-recursive 1000) = ") @c/pi-prod-recursive 1000)))
     ))
