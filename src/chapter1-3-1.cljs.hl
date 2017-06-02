@@ -1,5 +1,6 @@
 (page "chapter1-3-1.html"
-  (:require [app.chapter1-3-1 :as c]))
+  (:require
+   [app.chapter1-3-1 :as c]))
 
 (html
   (head
@@ -40,4 +41,11 @@
     (ul
       (li (pre (code "
 (acc-sum-recursive-cubes 0 10) = ") @c/acc-sum-recursive-cubes-0-10)))
+    (h1 "Exercise 1.33")
+    (ul
+      (li (pre (code "
+(filtered-acc-sum-primes 0 10) = ") @c/filtered-acc-sum-primes-0-10)))
+    (ul
+      (li (pre (code "
+(filtered-acc-gcd-product 10) = ") @c/filtered-acc-gcd-product-10)))
     ))

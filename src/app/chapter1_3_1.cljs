@@ -1,5 +1,8 @@
 (ns app.chapter1-3-1
-  (:require [javelin.core :refer [defc cell=]]))
+  (:require
+   [javelin.core :refer [defc cell=]]
+   [app.chapter1-2-5 :refer [gcd]]
+   [app.chapter1-2-6 :refer [prime?]]))
 
 ;; Exercise 1.29
 (defn simpsons [f a b n]
@@ -123,3 +126,27 @@
   (acc-sum-recursive cube a inc b))
 
 (defc acc-sum-recursive-cubes-0-10 (acc-sum-recursive-cubes 0 10))
+
+;; Exercise 1.33
+(defn filtered-accumulate [pred combiner null-value term a next b]
+  (let [go (fn [a acc]
+             (if (> a b)
+               acc
+               (let [result (if (pred a)
+                              (combiner (term a) acc)
+                              acc)]
+                 (recur (next a) result))))]
+    (go a null-value)))
+
+(defn filtered-acc-sum-primes [a b]
+  (filtered-accumulate prime? + 0 identity a inc b))
+
+(defn filtered-acc-gcd [n]
+  (let [rel-prime-n? (fn [x]
+                        (= (gcd x n) 1))
+         a 0
+         b (dec n)]
+     (filtered-accumulate rel-prime-n? * 1 identity a inc b)))
+
+(defc filtered-acc-sum-primes-0-10 (filtered-acc-sum-primes 0 10))
+(defc filtered-acc-gcd-product-10 (filtered-acc-gcd 10))

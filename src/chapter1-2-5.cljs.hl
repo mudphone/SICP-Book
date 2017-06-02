@@ -1,9 +1,5 @@
 (page "chapter1-2-5.html")
 
-;; Exercise 1.20
-
-(defn remainder [a b] (mod a b))
-
 (html
   (head
     (link :rel "stylesheet" :href "app.css"))
