@@ -22,5 +22,22 @@
     (h1 "Exercise 1.31: Recursive")
     (ul
       (li (pre (code "
-(pi-prod-recursive 1000) = ") @c/pi-prod-recursive 1000)))
+(pi-prod-recursive 1000) = ") @c/pi-prod-recursive-1000)))
+    (h1 "Exercise 1.32: Iterative")
+    (ul
+      (li (pre (code "
+(acc-sum-cubes 0 10) = ") @c/acc-sum-cubes-0-10)))
+    (ul
+      (li (pre (code "
+(acc-sum-simple 0 5) = ") @c/acc-sum-simple-0-5)))
+    (ul
+      (li (pre (code "
+(acc-product-cubs 2 3) = ") @c/acc-product-cubes-2-3)))
+    (ul
+      (li (pre (code "
+(acc-product-simple 5 6) = ") @c/acc-product-simple-5-6)))
+    (h1 "Exercise 1.32: Recursive")
+    (ul
+      (li (pre (code "
+(acc-sum-recursive-cubes 0 10) = ") @c/acc-sum-recursive-cubes-0-10)))
     ))

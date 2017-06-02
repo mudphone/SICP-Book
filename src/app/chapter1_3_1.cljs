@@ -77,3 +77,49 @@
   (pi-n n prod-recursive))
 
 (defc pi-prod-recursive-1000 (pi-prod-recursive 1000))
+
+;; Exercise 1.32: Iterative
+(defn accumulate [combiner null-value term a next b]
+  (let [go (fn [a acc]
+             (if (> a b)
+               acc
+               (recur (next a) (combiner (term a) acc))))]
+    (go a null-value)))
+
+(defn acc-sum [term a next b]
+  (accumulate + 0 term a next b))
+
+(defn acc-sum-cubes [a b]
+  (acc-sum cube a inc b))
+
+(defn acc-sum-simple [a b]
+  (acc-sum identity a inc b))
+
+(defc acc-sum-cubes-0-10 (acc-sum-cubes 0 10))
+(defc acc-sum-simple-0-5 (acc-sum-simple 0 5))
+
+(defn acc-product [term a next b]
+  (accumulate * 1 term a next b))
+
+(defn acc-product-cubes [a b]
+  (acc-product cube a inc b))
+
+(defn acc-product-simple [a b]
+  (acc-product identity a inc b))
+
+(defc acc-product-cubes-2-3 (acc-product-cubes 2 3))
+(defc acc-product-simple-5-6 (acc-product-simple 5 6))
+
+;; Exercise 1.32: Recursive
+(defn accumulate-recursive [combiner null-value term a next b]
+  (if (> a b)
+    null-value
+    (combiner (term a) (accumulate-recursive combiner null-value term (next a) next b))))
+
+(defn acc-sum-recursive [term a next b]
+  (accumulate-recursive + 0 term a next b))
+
+(defn acc-sum-recursive-cubes [a b]
+  (acc-sum-recursive cube a inc b))
+
+(defc acc-sum-recursive-cubes-0-10 (acc-sum-recursive-cubes 0 10))
