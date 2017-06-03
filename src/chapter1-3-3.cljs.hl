@@ -1,0 +1,21 @@
+(page "chapter1-3-3.html"
+  (:require
+   [javelin.core :refer [cell=]]
+   [app.chapter1-3-3 :as c]
+   [app.elements :refer [a-item]]))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Exercise 1.35")
+    (ul
+      (a-item (str "(golden-ratio) = " @c/golden-ratio-value
+                   ", steps: " @c/golden-ratio-steps)))
+    (h1 "Exercise 1.36")
+    (ul
+      (a-item (str "(x-to-x-1000) = " @c/x-to-x-1000-value
+                   ", steps: " @c/x-to-x-1000-steps))
+      (a-item (str "(x-to-x-1000-avg-damp) = " @c/x-to-x-1000-avg-damp-value
+                   ", steps: " @c/x-to-x-1000-avg-damp-steps)))
+    ))
