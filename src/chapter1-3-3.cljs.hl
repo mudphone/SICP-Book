@@ -26,5 +26,5 @@
       (a-item "(cont-frac-iter-golden-ratio 14) = " @c/cont-frac-iter-golden-ratio-14))
     (h1 "Exercise 1.37")
     (ul
-      (a-item "(e-2 10) = " @c/e-2-10))
+      (a-item "(nat-log 10) = " @c/nat-log-10))
     ))
