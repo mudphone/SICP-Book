@@ -77,3 +77,13 @@
   (/ 1.0 (cont-frac-iter (constantly 1.0) (constantly 1.0) n)))
 
 (defc cont-frac-iter-golden-ratio-14 (cont-frac-iter-golden-ratio 14))
+
+;; Exercise 1.38
+;; ~ 2.718281828459
+(defn e-2-d-proc [n]
+  (nth (drop 1 (flatten (interleave (repeat [1.0 1.0]) (iterate #(+ 2.0 %) 2.0) ))) (dec n)))
+
+(defn e-2 [k]
+  (+ 2 (cont-frac-iter (constantly 1.0) e-2-d-proc k)))
+
+(defc e-2-10 (e-2 10))

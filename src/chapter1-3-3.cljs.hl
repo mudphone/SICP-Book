@@ -24,4 +24,7 @@
     (h1 "Exercise 1.36: Iterative")
     (ul
       (a-item "(cont-frac-iter-golden-ratio 14) = " @c/cont-frac-iter-golden-ratio-14))
+    (h1 "Exercise 1.37")
+    (ul
+      (a-item "(e-2 10) = " @c/e-2-10))
     ))
