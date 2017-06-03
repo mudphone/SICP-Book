@@ -18,13 +18,15 @@
                    ", steps: " @c/x-to-x-1000-steps))
       (a-item (str "(x-to-x-1000-avg-damp) = " @c/x-to-x-1000-avg-damp-value
                    ", steps: " @c/x-to-x-1000-avg-damp-steps)))
-    (h1 "Exercise 1.36: Recursive")
+    (h1 "Exercise 1.37: Recursive")
     (ul
       (a-item "(cont-frac-golden-ratio 14) = " @c/cont-frac-golden-ratio-14))
-    (h1 "Exercise 1.36: Iterative")
+    (h1 "Exercise 1.37: Iterative")
     (ul
       (a-item "(cont-frac-iter-golden-ratio 14) = " @c/cont-frac-iter-golden-ratio-14))
-    (h1 "Exercise 1.37")
+    (h1 "Exercise 1.38")
     (ul
       (a-item "(nat-log 10) = " @c/nat-log-10))
-    ))
+    (h1 "Exercise 1.39")
+    (ul
+      (a-item "(tan-cf 10 100) = " @c/tan-cf-10-100))))

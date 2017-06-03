@@ -87,3 +87,19 @@
   (+ 2 (cont-frac-iter (constantly 1.0) d-proc k)))
 
 (defc nat-log-10 (nat-log 10))
+
+;; Exercise 1.39
+(defn tan-cf [x k]
+  (let [n-proc (fn [i]
+                 (if (= i 1) x (* x x)))
+        d-proc (fn [i]
+                 (nth (iterate #(+ 2.0 %) 1.0) (dec i)))]
+    (loop [result 0
+           term k]
+      (if (= term 0)
+        result
+        (recur (/ (n-proc term)
+                  (- (d-proc term) result))
+               (dec term))))))
+
+(defc tan-cf-10-100 (tan-cf 10 100))
