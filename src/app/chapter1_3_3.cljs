@@ -19,6 +19,9 @@
     (println "Ex 1.35 starting guess: " first-guess)
     (try-it {:steps 1 :guess first-guess})))
 
+(defn fixed-point2 [f first-guess]
+  (:guess (fixed-point f first-guess)))
+
 (defn golden-ratio []
   (fixed-point (fn [y]
                  (+ 1.0 (/ 1.0 y)))

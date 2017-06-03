@@ -1,0 +1,36 @@
+(page "chapter1-3-4.html"
+  (:require
+   [app.chapter1-3-4 :as c]
+   [app.elements :refer [a-item]]))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Exercise 1.40")
+    (ul
+      (a-item "
+(defn cubic [a b c]
+  (fn [x]
+    (+ (* a (cube x))
+       (* b (square x))
+       c)))")
+      (a-item "(newtons-method (cubic 1 2 3) 1.0) = " @c/newtons-method-cubic-1-2-3))
+    (h1 "Exercise 1.41")
+    (ul
+      (a-item "(((dbl (dbl dbl)) inc) 5) = " @c/inc-16-5))
+    (h1 "Exercise 1.42")
+    (ul
+      (a-item "((compose square inc) 6) = " @c/compose-square-inc-6))
+    (h1 "Exercise 1.43")
+    (ul
+      (a-item "((repeated square 2) 5) = " @c/repeated-square-2-5))
+    (h1 "Exercise 1.45")
+    (ul
+      (a-item "(nth-root 3 1000) = " @c/nth-root-3-1000)
+      (a-item "(nth-root 4 10000) = " @c/nth-root-4-10000)
+      (a-item "(nth-root 5 100000) = " @c/nth-root-5-100000))
+    (h1 "Exercise 1.46")
+    (ul
+      (a-item "(sqrt-iter-improve 9) = " @c/sqrt-iter-improve-9))
+    ))
