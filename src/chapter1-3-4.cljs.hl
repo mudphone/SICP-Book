@@ -32,5 +32,4 @@
       (a-item "(nth-root 5 100000) = " @c/nth-root-5-100000))
     (h1 "Exercise 1.46")
     (ul
-      (a-item "(sqrt-iter-improve 9) = " @c/sqrt-iter-improve-9))
-    ))
+      (a-item "(sqrt-iter-improve 9) = " @c/sqrt-iter-improve-9))))
