@@ -18,4 +18,10 @@
                    ", steps: " @c/x-to-x-1000-steps))
       (a-item (str "(x-to-x-1000-avg-damp) = " @c/x-to-x-1000-avg-damp-value
                    ", steps: " @c/x-to-x-1000-avg-damp-steps)))
+    (h1 "Exercise 1.36: Recursive")
+    (ul
+      (a-item "(cont-frac-golden-ratio 14) = " @c/cont-frac-golden-ratio-14))
+    (h1 "Exercise 1.36: Iterative")
+    (ul
+      (a-item "(cont-frac-iter-golden-ratio 14) = " @c/cont-frac-iter-golden-ratio-14))
     ))

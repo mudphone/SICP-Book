@@ -47,3 +47,33 @@
 (defc the-x-to-x-1000-avg-damp (x-to-x-1000-avg-damp))
 (defc= x-to-x-1000-avg-damp-value (:guess the-x-to-x-1000-avg-damp))
 (defc= x-to-x-1000-avg-damp-steps (:steps the-x-to-x-1000-avg-damp))
+
+;; Exercise 1.37: Iterative
+(defn cont-frac-recur [n d k i]
+  (if (> i k)
+    0
+    (/ (n i)
+       (+ (d i) (cont-frac-recur n d k (inc i))))))
+
+(defn cont-frac [n d k]
+  (cont-frac-recur n d k 1))
+
+(defn cont-frac-golden-ratio [n]
+  (/ 1.0 (cont-frac (constantly 1.0) (constantly 1.0) n)))
+
+(defc cont-frac-golden-ratio-14 (cont-frac-golden-ratio 14))
+
+;; Exercise 1.37: Recursive
+(defn cont-frac-iter [n d k]
+  (loop [result 0
+         term k]
+    (if (= term 0)
+      result
+      (recur (/ (n term)
+                (+ (d term) result))
+             (dec term)))))
+
+(defn cont-frac-iter-golden-ratio [n]
+  (/ 1.0 (cont-frac-iter (constantly 1.0) (constantly 1.0) n)))
+
+(defc cont-frac-iter-golden-ratio-14 (cont-frac-iter-golden-ratio 14))
