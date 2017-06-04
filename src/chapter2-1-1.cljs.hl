@@ -3,6 +3,8 @@
    [app.chapter2-1-1 :as c]
    [app.elements :refer [a-item]]))
 
+(js/jQuery #(c/draw-ex-2-2))
+
 (html
   (head
     (link :rel "stylesheet" :href "app.css"))
@@ -13,4 +15,8 @@
       (a-item "(numer (make-rat -1 -2)) = " @c/numer-rat-neg1-neg2)
       (a-item "(denom (make-rat -1 -2)) = " @c/denom-rat-neg1-neg2)
       (a-item "(numer (make-rat 1 -2)) = " @c/numer-rat-1-neg2)
-      (a-item "(denom (make-rat 1 -2)) = " @c/denom-rat-1-neg2))))
+      (a-item "(denom (make-rat 1 -2)) = " @c/denom-rat-1-neg2))
+    (h1 "Exercise 2.2")
+    (canvas :id (:canvas-id @c/canvas-id)
+      :height (:height @c/canvas-size)
+      :width (:width @c/canvas-size))))
