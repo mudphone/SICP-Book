@@ -1,0 +1,15 @@
+(page "chapter2-1-2.html"
+  (:require
+   [app.chapter2-1-2 :as c]
+   [app.elements :refer [a-item]]))
+
+(js/jQuery #(c/draw-ex-2-2))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Exercise 2.2")
+    (canvas :id c/canvas-id
+      :height (:height c/canvas-size)
+      :width (:width c/canvas-size))))
