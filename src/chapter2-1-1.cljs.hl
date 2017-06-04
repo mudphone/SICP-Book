@@ -1,0 +1,16 @@
+(page "chapter2-1-1.html"
+  (:require
+   [app.chapter2-1-1 :as c]
+   [app.elements :refer [a-item]]))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Exercise 2.1")
+    (ul
+      (a-item "(make-rat 1 2) = " @c/make-rat-1-2)
+      (a-item "(numer (make-rat -1 -2)) = " @c/numer-rat-neg1-neg2)
+      (a-item "(denom (make-rat -1 -2)) = " @c/denom-rat-neg1-neg2)
+      (a-item "(numer (make-rat 1 -2)) = " @c/numer-rat-1-neg2)
+      (a-item "(denom (make-rat 1 -2)) = " @c/denom-rat-1-neg2))))
