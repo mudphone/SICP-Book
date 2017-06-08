@@ -2,6 +2,8 @@
   (:require
    [app.segment :refer [midpoint-segment make-segment]]
    [app.point :refer [make-point x-point y-point]]
+   [app.rectangle :refer [width height make-rect]]
+   [app.rectangle2 :as rect2]
    [javelin.core :refer [defc defc= cell=]]
    [hoplon.jquery]))
 
@@ -37,3 +39,30 @@
         (draw-point "black" 4
                     (x-point point2)
                     (y-point point2)))))
+
+;; Exercise 2.3
+(defn perimeter [rect]
+  (let [w (width rect)
+        h (height rect)]
+    (* 2.0 (+ w h))))
+
+(defn area [rect]
+  (let [w (width rect)
+        h (height rect)]
+    (* w h)))
+
+(defc perimeter-10-20 (perimeter (make-rect (make-point 0 0) 10 20)))
+(defc area-10-20      (area      (make-rect (make-point 0 0) 10 20)))
+
+(defn perimeter2 [rect]
+  (let [w (rect2/width rect)
+        h (rect2/height rect)]
+    (* 2.0 (+ w h))))
+
+(defn area2 [rect]
+  (let [w (rect2/width rect)
+        h (rect2/height rect)]
+    (* w h)))
+
+(defc perimeter2-10-20 (perimeter2 (rect2/make-rect (make-point 0 0) 10 20)))
+(defc area2-10-20      (area2      (rect2/make-rect (make-point 0 0) 10 20)))

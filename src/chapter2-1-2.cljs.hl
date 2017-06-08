@@ -19,4 +19,10 @@
   (make-point 40 140))) = " (point-str @c/midpoint-segment-1-2)))
     (canvas :id c/canvas-id
       :height (:height c/canvas-size)
-      :width (:width c/canvas-size))))
+      :width (:width c/canvas-size))
+    (h1 "Exercise 2.3")
+    (ul
+      (a-item "(perimeter  (make-rect (make-point 0 0) 10 20)) = " @c/perimeter-10-20)
+      (a-item "(area       (make-rect (make-point 0 0) 10 20)) = " @c/area-10-20)
+      (a-item "(perimeter2 (rect2/make-rect (make-point 0 0) 10 20)) = " @c/perimeter2-10-20)
+      (a-item "(area2      (rect2/make-rect (make-point 0 0) 10 20)) = " @c/area2-10-20))))
