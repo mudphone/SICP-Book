@@ -18,4 +18,8 @@
 (car2 (fn [m] (m 1 2)))
 ((fn [m] (m 1 2)) (fn [p q] p))
 ((fn [p q] p) 1 2)
-1"))))
+1"))
+    (h1 "Exercise 2.5")
+    (ul
+      (a-item "(car3 (cons3 1 2)) = " @c/car3-cons3-1-2)
+      (a-item "(cdr3 (cons3 1 2)) = " @c/cdr3-cons3-1-2))))
