@@ -22,4 +22,26 @@
     (h1 "Exercise 2.5")
     (ul
       (a-item "(car3 (cons3 1 2)) = " @c/car3-cons3-1-2)
-      (a-item "(cdr3 (cons3 1 2)) = " @c/cdr3-cons3-1-2))))
+      (a-item "(cdr3 (cons3 1 2)) = " @c/cdr3-cons3-1-2))
+    (h1 "Exercise 2.6")
+    (ul
+      (a-item "
+(defn zero  [f] (fn [x] x))
+(defn add-1 [n] (fn [f] (fn [x] (f ((n f) x)))))")
+      (a-item "
+(add-1 zero)
+(fn [f] (fn [x] (f ((zero f) x))))
+(fn [f] (fn [x] (f ((fn [x] x) x))))
+(fn [f] (fn [x] (f x)))
+(defn one [f] (fn [x] (f x)))")
+      (a-item "
+(add-1 one)
+(fn [f] (fn [x] (f ((one f) x))))
+(fn [f] (fn [x] (f ((fn [x] (f x)) x))))
+(fn [f] (fn [x] (f (f x))))
+(defn two [f] (fn [x] (f (f x))))")
+      (a-item "((zero inc) 0) = " @c/zero-inc-0)
+      (a-item "((one inc) 0) =  " @c/one-inc-0)
+      (a-item "((two inc) 0) =  " @c/two-inc-0)
+      (a-item "(((add-1 two) inc) 0) = " @c/add-1-two-inc-0))))
+

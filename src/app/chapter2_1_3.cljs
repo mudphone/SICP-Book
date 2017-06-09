@@ -74,3 +74,14 @@
 
 (defc car3-cons3-1-2 (car3 (cons3 1 2)))
 (defc cdr3-cons3-1-2 (cdr3 (cons3 1 2)))
+
+;; Exercise 2.6
+(defn zero  [f] (fn [x] x))
+(defn add-1 [n] (fn [f] (fn [x] (f ((n f) x)))))
+(defn one [f] (fn [x] (f x)))
+(defn two [f] (fn [x] (f (f x))))
+
+(defc zero-inc-0 ((zero inc) 0))
+(defc one-inc-0 ((one inc) 0))
+(defc two-inc-0 ((two inc) 0))
+(defc add-1-two-inc-0 (((add-1 two) inc) 0))
