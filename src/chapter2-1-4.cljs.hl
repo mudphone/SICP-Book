@@ -1,0 +1,61 @@
+(page "chapter2-1-4.html"
+  (:require
+   [app.chapter2-1-4 :as c]
+   [app.elements :refer [a-item]]))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Exercise 2.7")
+    (ul
+      (a-item "(upper-bound (make-interval 1 2)) = " @c/upper-bound-1-2)
+      (a-item "(lower-bound (make-interval 1 2)) = " @c/lower-bound-1-2))
+    (h1 "Exercise 2.8")
+    (ul
+      (a-item "(sub-interval (make-interval -10 -1) (make-interval 100 1000)) = " @c/sub-interval1)
+      (a-item "(sub-interval (make-interval 100 1000) (make-interval -10 -1)) = " @c/sub-interval2)
+      (a-item "(sub-interval (make-interval 100 1000) (make-interval 1 2)) = " @c/sub-interval3))
+    (h1 "Exercise 2.9")
+    (ul
+      (a-item "(width-interval (make-interval -10 -1)) = " @c/width1a)
+      (a-item "(width-interval (make-interval 100 1000)) = " @c/width1b)
+      (a-item "
+(width-interval 
+ (sub-interval
+  (make-interval -10 -1)
+  (make-interval 100 1000))) = " @c/width1s)
+      (a-item "
+(width-interval
+ (sub-interval
+  (make-interval 100 1000)
+  (make-interval -10 -1))) = " @c/width2s)
+      (a-item "(width-interval (make-interval 100 1000)) = " @c/width3a)
+      (a-item "(width-interval (make-interval 1 2)) = " @c/width3b)
+      (a-item "
+(width-interval
+ (sub-interval
+  (make-interval 100 1000)
+  (make-interval 1 2))) = " @c/width3s)
+      (a-item "(width-interval (make-interval -10 -1)) = " @c/width-m1a)
+      (a-item "(width-interval (make-interval 100 1000)) = " @c/width-m1b)
+      (a-item "
+(width-interval
+ (mul-interval
+  (make-interval -10 -1)
+  (make-interval 100 1000))) = " @c/width-m1)
+      (a-item "
+(width-interval 
+ (mul-interval
+  (make-interval 100 1000)
+  (make-interval -10 -1))) = " @c/width-m2)
+      (a-item "(width-interval (make-interval 100 1000)) = " @c/width-m3a)
+      (a-item "(width-interval (make-interval 1 2)) = " @c/width-m3b)
+      (a-item "
+(width-interval
+ (mul-interval
+  (make-interval 100 1000)
+  (make-interval 1 2))) = " @c/width-m3))))
+
+
+
