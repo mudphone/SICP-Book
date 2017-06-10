@@ -92,3 +92,86 @@
                                  (/ 1.0 (lower-bound y))))))
 
 ;; Exercise 2.11
+(defn sign [x]
+  (cond (< x 0) -1
+        (> x 0) 1
+        :else 0))
+
+(defn mul-interval2 [x y]
+  (let [lower-x (lower-bound x)
+        upper-x (upper-bound x)
+        lower-y (lower-bound y)
+        upper-y (upper-bound y)
+        lo-x (sign lower-x)
+        up-x (sign upper-x)
+        lo-y (sign lower-y)
+        up-y (sign upper-y)]
+    
+    (cond
+      ;; 1 [+ +] [+ +]
+      (and (>= lo-x 0) (>= up-x 0)
+           (>= lo-y 0) (>= up-y 0))
+      (make-interval (* lower-x lower-y)
+                     (* upper-x upper-y))
+      ;; 2 [+ +] [- +]
+      (and (>= lo-x 0) (>= up-x 0)
+           (<= lo-y 0) (>= up-y 0))
+      (make-interval (* upper-x lower-y)
+                     (* upper-x upper-y))
+      ;; 3 [+ +] [- -]
+      (and (>= lo-x 0) (>= up-x 0)
+           (<= lo-y 0) (<= up-y 0))
+      (make-interval (* upper-x lower-y)
+                     (* lower-x upper-y))
+      ;; 4 [- +] [+ +]
+      (and (<= lo-x 0) (>= up-x 0)
+           (>= lo-y 0) (>= up-y 0))
+      (make-interval (* lower-x upper-y)
+                     (* upper-x upper-y))
+      ;; 5 [- +] [- +]
+      (and (<= lo-x 0) (>= up-x 0)
+           (<= lo-y 0) (>= up-y 0))
+      (make-interval (min (* lower-x upper-y)
+                          (* upper-x lower-y))
+                     (max (* lower-x lower-y)
+                          (* upper-x upper-y)))
+      ;; 6 [- +] [- -]
+      (and (<= lo-x 0) (>= up-x 0)
+           (<= lo-y 0) (>= up-y 0))
+      (make-interval (* upper-x lower-y)
+                     (* lower-x lower-y))
+      ;; 7 [- -] [+ +]
+      (and (<= lo-x 0) (<= up-x 0)
+           (>= lo-y 0) (>= up-y 0))
+      (make-interval (* lower-x upper-y)
+                     (* upper-x lower-y))
+      ;; 8 [- -] [- +]
+      (and (<= lo-x 0) (<= up-x 0)
+           (<= lo-y 0) (>= up-y 0))
+      (make-interval (* lower-x upper-y)
+                     (* lower-x lower-y))
+      ;; 9 [- -] [- -]
+      (and (<= lo-x 0) (<= up-y 0)
+           (<= lo-y 0) (<= up-y 0))
+      (make-interval (* upper-x upper-y)
+                     (* lower-x lower-y)))))
+
+(defc mul1-1 (interval-str
+              (mul-interval (make-interval -10 -1)
+                            (make-interval 100 1000))))
+(defc mul1-2 (interval-str
+              (mul-interval (make-interval 100 1000)
+                            (make-interval -10 -1))))
+(defc mul1-3 (interval-str
+              (mul-interval (make-interval 100 1000)
+                            (make-interval 1 2))))
+
+(defc mul2-1 (interval-str
+              (mul-interval2 (make-interval -10 -1)
+                             (make-interval 100 1000))))
+(defc mul2-2 (interval-str
+              (mul-interval2 (make-interval 100 1000)
+                             (make-interval -10 -1))))
+(defc mul2-3 (interval-str
+              (mul-interval2 (make-interval 100 1000)
+                             (make-interval 1 2))))
