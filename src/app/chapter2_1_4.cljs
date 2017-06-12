@@ -30,9 +30,7 @@
 (defn abs [x] (if (neg? x) (- x) x))
 
 (defn width-interval [x]
-  (-> (- (upper-bound x) (lower-bound x))
-      abs
-      (/ 2.0)))
+  (/ (- (upper-bound x) (lower-bound x)) 2))
 
 (defc width1a (width-interval (make-interval -10 -1)))
 (defc width1b (width-interval (make-interval 100 1000)))
@@ -175,3 +173,18 @@
 (defc mul2-3 (interval-str
               (mul-interval2 (make-interval 100 1000)
                              (make-interval 1 2))))
+
+;; Exercise 2.12
+(defn make-center-width [c w]
+  (make-interval (- c w) (+ c w)))
+
+(defn center-interval [i]
+  (/ (+ (lower-bound i) (upper-bound i)) 2))
+
+;; pct = w / c
+(defn make-center-percent [c pct]
+  (let [w (* c pct)]
+    (make-center-width c w)))
+
+(defc mcp-5-10 (interval-str
+                (make-center-percent 5 0.1)))

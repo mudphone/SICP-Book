@@ -75,7 +75,10 @@
                (make-interval -10 -1)) = " @c/mul2-2)
       (a-item "
 (mul-interval2 (make-interval 100 1000)
-               (make-interval 1 2)) = " @c/mul2-3))))
+               (make-interval 1 2)) = " @c/mul2-3))
+    (h1 "Exercise 2.12")
+    (ul
+      (a-item "(make-center-percent 5 0.1) = " @c/mcp-5-10))))
 
 
 

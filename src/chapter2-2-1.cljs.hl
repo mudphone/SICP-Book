@@ -1,0 +1,19 @@
+(page "chapter2-2-1.html"
+  (:require
+   [app.chapter2-2-1 :as c]
+   [app.pair :as p]
+   [app.elements :refer [a-item]]))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Exercise 2.17")
+    (ul
+      (a-item "(last-pair (list 1 2 3)) = " (c/last-pair (p/list' 1 2 3))))
+    (h1 "Exercise 2.18")
+    (ul
+      (a-item "(reverse (list 1 2 3)) = " @c/reverse-list-123))))
+
+
+
