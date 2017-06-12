@@ -10,7 +10,7 @@
   (body
     (h1 "Exercise 2.17")
     (ul
-      (a-item "(last-pair (list 1 2 3)) = " (c/last-pair (p/list' 1 2 3))))
+      (a-item "(last-pair (list 1 2 3)) = " @c/last-pair-list-123))
     (h1 "Exercise 2.18")
     (ul
       (a-item "(reverse (list 1 2 3)) = " @c/reverse-list-123))))
