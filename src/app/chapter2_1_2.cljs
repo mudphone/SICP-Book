@@ -9,7 +9,7 @@
 
 ;; Exercise 2.2
 (def canvas-id "ex-2-2-canvas")
-(def canvas-size {:width 400 :height 400})
+(def canvas-size {:width 400 :height 200})
 
 (def point1 (make-point 10 60))
 (def point2 (make-point 40 140))
