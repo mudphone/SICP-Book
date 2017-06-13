@@ -162,4 +162,7 @@
     (h2 "Exercise 2.18")
     (ul
       (a-item "(reverse (list 1 2 3)) = " @c2-2-1/reverse-list-123))
+    (h2 "Exercise 2.19")
+    (ul
+      (a-item "(cc 100 us-coins) = " @c2-2-1/cc-100-us-coins))
     ))
