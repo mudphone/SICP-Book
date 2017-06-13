@@ -165,4 +165,7 @@
     (h2 "Exercise 2.19")
     (ul
       (a-item "(cc 100 us-coins) = " @c2-2-1/cc-100-us-coins))
-    ))
+    (h2 "Exercise 2.20")
+    (ul
+      (a-item "(same-parity 1 2 3 4 5 6 7) = " (str @c2-2-1/same-parity-odd))
+      (a-item "(same-parity 2 3 4 5 6 7) = " (str @c2-2-1/same-parity-even)))))

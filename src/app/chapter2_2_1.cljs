@@ -42,3 +42,12 @@
                  coin-values))))
 
 (defc cc-100-us-coins (cc 100 us-coins))
+
+;; Exercise 2.20
+(defn same-parity [& xs]
+  (if (even? (first xs))
+    (filter even? xs)
+    (filter odd? xs)))
+
+(defc same-parity-odd (same-parity 1 2 3 4 5 6 7))
+(defc same-parity-even (same-parity 2 3 4 5 6 7))
