@@ -1,4 +1,5 @@
-(page "chapter1-2-4.html")
+(ns app.chapter1-2-4
+  (:require [javelin.core :refer [defc]]))
 
 ;; Exercise 1.16
 
@@ -52,25 +53,3 @@
   (fib-iter 1 0 0 1 n))
 
 (defc clever-fib-6 (fib 6))
-
-(html
-  (head
-    (link :rel "stylesheet" :href "app.css"))
-  (body
-    (h1 "Exercise 1.16")
-    (ul
-      (li (pre (code "
-(expt 2 3) = ")) @expt-2-3)
-      )
-    (h1 "Exercise 1.17")
-    (ul
-      (li (pre (code "
-(my-* 2 7) = ")) @my-*-2-7))
-    (h1 "Exercise 1.18")
-    (ul
-      (li (pre (code "
-(it-* 3 5) = ")) @it-*-3-5))
-    (h1 "Exercise 1.19")
-    (ul
-      (li (pre (code "
-(fib 6) = ")) @clever-fib-6))))

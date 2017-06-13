@@ -11,7 +11,7 @@
 
 (defc last-pair-list-123 (last-pair (list' 1 2 3)))
 
-;; Exercise 2.18 
+;; Exercise 2.18
 (defn reverse' [xs]
   (let [go (fn [acc r]
              (if (nil? r)

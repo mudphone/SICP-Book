@@ -1,0 +1,165 @@
+(page "chapter2.html"
+  (:require
+   [app.elements :refer [a-item]]
+   [app.pair :as p]
+   [app.point :refer [point-str]]
+   [app.chapter2-1-1 :as c2-1-1]
+   [app.chapter2-1-2 :as c2-1-2]
+   [app.chapter2-1-3 :as c2-1-3]
+   [app.chapter2-1-4 :as c2-1-4]
+   [app.chapter2-2-1 :as c2-2-1]))
+
+(js/jQuery #(c2-1-2/draw-ex-2-2))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Chapter 2.1.1")
+    (h2 "Exercise 2.1")
+    (ul
+      (a-item "(make-rat 1 2) = " @c2-1-1/make-rat-1-2)
+      (a-item "(numer (make-rat -1 -2)) = " @c2-1-1/numer-rat-neg1-neg2)
+      (a-item "(denom (make-rat -1 -2)) = " @c2-1-1/denom-rat-neg1-neg2)
+      (a-item "(numer (make-rat 1 -2)) = " @c2-1-1/numer-rat-1-neg2)
+      (a-item "(denom (make-rat 1 -2)) = " @c2-1-1/denom-rat-1-neg2))
+    (hr)
+    (h1 "Chapter 2.1.2")
+    (h1 "Exercise 2.2")
+    (ul
+      (a-item "
+(midpoint-segment 
+ (make-segment 
+  (make-point 10  60)
+  (make-point 40 140))) = " (point-str @c2-1-2/midpoint-segment-1-2)))
+    (canvas :id c2-1-2/canvas-id
+      :height (:height c2-1-2/canvas-size)
+      :width (:width c2-1-2/canvas-size))
+    (h1 "Exercise 2.3")
+    (ul
+      (a-item "(perimeter  (make-rect (make-point 0 0) 10 20)) = " @c2-1-2/perimeter-10-20)
+      (a-item "(area       (make-rect (make-point 0 0) 10 20)) = " @c2-1-2/area-10-20)
+      (a-item "(perimeter2 (rect2/make-rect (make-point 0 0) 10 20)) = " @c2-1-2/perimeter2-10-20)
+      (a-item "(area2      (rect2/make-rect (make-point 0 0) 10 20)) = " @c2-1-2/area2-10-20))
+    (hr)
+    (h1 "Chapter 2.1.3")
+    (h2 "Exercise 2.4")
+    (ul
+      (a-item "(car1 (cons1 1 2)) = " @c2-1-3/car1-cons1-1-2)
+      (a-item "(cdr1 (cons1 1 2)) = " @c2-1-3/cdr1-cons1-1-2)
+      (a-item "(car2 (cons2 1 2)) = " @c2-1-3/car2-cons2-1-2)
+      (a-item "(cdr2 (cons2 1 2)) = " @c2-1-3/cdr2-cons2-1-2)
+      (a-item "
+(car2 (cons2 1 2))
+(car2 (fn [m] (m 1 2)))
+((fn [m] (m 1 2)) (fn [p q] p))
+((fn [p q] p) 1 2)
+1"))
+    (h2 "Exercise 2.5")
+    (ul
+      (a-item "(car3 (cons3 1 2)) = " @c2-1-3/car3-cons3-1-2)
+      (a-item "(cdr3 (cons3 1 2)) = " @c2-1-3/cdr3-cons3-1-2))
+    (h2 "Exercise 2.6")
+    (ul
+      (a-item "
+(defn zero  [f] (fn [x] x))
+(defn add-1 [n] (fn [f] (fn [x] (f ((n f) x)))))")
+      (a-item "
+(add-1 zero)
+(fn [f] (fn [x] (f ((zero f) x))))
+(fn [f] (fn [x] (f ((fn [x] x) x))))
+(fn [f] (fn [x] (f x)))
+(defn one [f] (fn [x] (f x)))")
+      (a-item "
+(add-1 one)
+(fn [f] (fn [x] (f ((one f) x))))
+(fn [f] (fn [x] (f ((fn [x] (f x)) x))))
+(fn [f] (fn [x] (f (f x))))
+(defn two [f] (fn [x] (f (f x))))")
+      (a-item "((zero inc) 0) = " @c2-1-3/zero-inc-0)
+      (a-item "((one inc) 0) =  " @c2-1-3/one-inc-0)
+      (a-item "((two inc) 0) =  " @c2-1-3/two-inc-0)
+      (a-item "(((add-1 two) inc) 0) = " @c2-1-3/add-1-two-inc-0))
+    (hr)
+    (h1 "Chapter 2.1.4")
+    (h2 "Exercise 2.7")
+    (ul
+      (a-item "(upper-bound (make-interval 1 2)) = " @c2-1-4/upper-bound-1-2)
+      (a-item "(lower-bound (make-interval 1 2)) = " @c2-1-4/lower-bound-1-2))
+    (h2 "Exercise 2.8")
+    (ul
+      (a-item "(sub-interval (make-interval -10 -1) (make-interval 100 1000)) = " @c2-1-4/sub-interval1)
+      (a-item "(sub-interval (make-interval 100 1000) (make-interval -10 -1)) = " @c2-1-4/sub-interval2)
+      (a-item "(sub-interval (make-interval 100 1000) (make-interval 1 2)) = " @c2-1-4/sub-interval3))
+    (h2 "Exercise 2.9")
+    (ul
+      (a-item "(width-interval (make-interval -10 -1)) = " @c2-1-4/width1a)
+      (a-item "(width-interval (make-interval 100 1000)) = " @c2-1-4/width1b)
+      (a-item "
+(width-interval 
+ (sub-interval
+  (make-interval -10 -1)
+  (make-interval 100 1000))) = " @c2-1-4/width1s)
+      (a-item "
+(width-interval
+ (sub-interval
+  (make-interval 100 1000)
+  (make-interval -10 -1))) = " @c2-1-4/width2s)
+      (a-item "(width-interval (make-interval 100 1000)) = " @c2-1-4/width3a)
+      (a-item "(width-interval (make-interval 1 2)) = " @c2-1-4/width3b)
+      (a-item "
+(width-interval
+ (sub-interval
+  (make-interval 100 1000)
+  (make-interval 1 2))) = " @c2-1-4/width3s)
+      (a-item "(width-interval (make-interval -10 -1)) = " @c2-1-4/width-m1a)
+      (a-item "(width-interval (make-interval 100 1000)) = " @c2-1-4/width-m1b)
+      (a-item "
+(width-interval
+ (mul-interval
+  (make-interval -10 -1)
+  (make-interval 100 1000))) = " @c2-1-4/width-m1)
+      (a-item "
+(width-interval 
+ (mul-interval
+  (make-interval 100 1000)
+  (make-interval -10 -1))) = " @c2-1-4/width-m2)
+      (a-item "(width-interval (make-interval 100 1000)) = " @c2-1-4/width-m3a)
+      (a-item "(width-interval (make-interval 1 2)) = " @c2-1-4/width-m3b)
+      (a-item "
+(width-interval
+ (mul-interval
+  (make-interval 100 1000)
+  (make-interval 1 2))) = " @c2-1-4/width-m3))
+    (h2 "Exercise 2.11")
+    (ul
+      (a-item "
+(mul-interval (make-interval -10 -1)
+              (make-interval 100 1000)) = " @c2-1-4/mul1-1)
+      (a-item "
+(mul-interval (make-interval 100 1000)
+              (make-interval -10 -1)) = " @c2-1-4/mul1-2)
+      (a-item "
+(mul-interval (make-interval 100 1000)
+              (make-interval 1 2)) = " @c2-1-4/mul1-3)
+      (a-item "
+(mul-interval2 (make-interval -10 -1)
+               (make-interval 100 1000)) = " @c2-1-4/mul2-1)
+      (a-item "
+(mul-interval2 (make-interval 100 1000)
+               (make-interval -10 -1)) = " @c2-1-4/mul2-2)
+      (a-item "
+(mul-interval2 (make-interval 100 1000)
+               (make-interval 1 2)) = " @c2-1-4/mul2-3))
+    (h2 "Exercise 2.12")
+    (ul
+      (a-item "(make-center-percent 5 0.1) = " @c2-1-4/mcp-5-10))
+    (h4)
+    (h1 "Chapter 2.2.1")
+    (h2 "Exercise 2.17")
+    (ul
+      (a-item "(last-pair (list 1 2 3)) = " @c2-2-1/last-pair-list-123))
+    (h2 "Exercise 2.18")
+    (ul
+      (a-item "(reverse (list 1 2 3)) = " @c2-2-1/reverse-list-123))
+    ))

@@ -1,0 +1,464 @@
+(page "chapter1.html"
+  (:require
+   [app.elements :refer [a-item]]
+   [app.chapter1-1 :as c1-1]
+   [app.chapter1-2-1 :as c1-2-1]
+   [app.chapter1-2-2 :as c1-2-2]
+   [app.chapter1-2-4 :as c1-2-4]
+   [app.chapter1-2-6 :as c1-2-6]
+   [app.chapter1-3-1 :as c1-3-1]
+   [app.chapter1-3-3 :as c1-3-3]
+   [app.chapter1-3-4 :as c1-3-4]))
+
+(enable-console-print!)
+
+(html
+  (head)
+  (body
+    (h1 "Chapter 1.1")
+    (h2 "Exercise 1.1")
+    (ul
+      (li (code "10 => ") c1-1/ex1-1a)
+      (li (code "(+ 5 3 4) => ") c1-1/ex1-1b)
+      (li (code "(- 9 1) => ") c1-1/ex1-1c)
+      (li (code "(/ 6 2) => ") c1-1/ex1-1d)
+      (li (code "(+ (* 2 4) (- 4 6)) => ") c1-1/ex1-1e)
+      (li (code "(cell 3) => ") c1-1/xa)
+      (li (code "(cell= (+ xa 1)) => ") c1-1/xb)
+      (li (code "(+ xa xb (* xa xb)) => ") c1-1/ex1-1h)
+      (li (pre (code "(= xa xb) => ") (text "~{c1-1/ex1-1i}")))
+      (li (pre (code "(if (and 
+      (> xb xa) 
+      (< xb (* xa xb)))
+      xb
+      xa) => ") c1-1/ex1-1j))
+      (li (pre (code "(cond (= xa 4) 6
+      (= xb 4) (+ 6 7 xa)
+      :else 25) => ") c1-1/ex1-1k))
+      (li (pre (code "(+ 2 (if 
+       (> xb xa)
+       xb
+       xa)) => ") c1-1/ex1-1l))
+      (li (pre (code "(* (cond (> xa xb) xa
+         (< xa xb) xb
+         :else -1)
+   (+ xa 1)) => ") c1-1/ex1-1m)))
+
+    (h2 "Exercise 1.2")
+    (ul
+      (li (pre (code "(/ (+ 5 (/ 1 4)
+        (- 2 (- 3 (+ 6 (/ 1 3)))))
+   (* 3 (- 6 2) (- 2 7))) => ") c1-1/ex1-2)))
+
+    (h2 "Exercise 1.3")
+    (ul
+      (li (pre (code "(high-sum-of-squares 1 3 5) => ") c1-1/ex1-3)))
+
+    (h2 "Exercise 1.4")
+    (ul
+      (li (text "`a-plus-abs-b` evals to `+` if `b` is positive, and `-` if b is negative. Thus, `a` is added to the absolute value of `b`.")))
+
+    (h2 "Exercise 1.5")
+    (ul
+      (li (text "Applicative order evaluation results in an infinite loop. Normal order evaluation would result in `0`.")))
+
+    (h2 "Exercise 1.6")
+    (ul
+      (li (text "Applicative order evaluation results in an infinite loop (again). `new-if` is a function (not a macro) so the operands are evaluated, resulting in `sqrt-iter` calling itself.")))
+
+    (h2 "Exercise 1.7")
+    (ul
+      (li (pre (code "(sqrt 4) => ") (c1-1/sqrt 4)))
+      (li (pre (code "(sqrt 25) => ") (c1-1/sqrt 25))))
+
+    (h2 "Exercise 1.8")
+    (ul
+      (li (pre (code "(cube-rt 8) => ") (c1-1/cube-rt 8)))
+      (li (pre (code "(cube-rt 125) => ") (c1-1/cube-rt 125))))
+    (hr)
+    (h1 "Chapter 1.2.1")
+    (h2 "Exercise 1.9")
+    (ul
+      (li (text "Option 1:"))
+      (li (pre (code "(define (+ a b)
+  (if (= a 0)
+    b
+    (inc (+ (dec a) b))))")))
+      (li (pre (code "(+ 3 3)")))
+      (li (pre (code "(inc (+ 2 3))")))
+      (li (pre (code "(inc (inc (+ 1 3)))")))
+      (li (pre (code "(inc (inc (inc (+ 0 3))))")))
+      (li (pre (code "(inc (inc (inc 3)))")))
+      (li (pre (code "(inc (inc 4))")))
+      (li (pre (code "(inc 5)")))
+      (li (pre (code "6"))))
+    (ul
+      (li (text "Option 2:"))
+      (li (pre (code "(define (+ a b)
+  (if (= a 0)
+    b
+    (+ (dec a) (inc b))))")))
+      (li (pre (code "(+ 3 3)")))
+      (li (pre (code "(+ 2 4)")))
+      (li (pre (code "(+ 1 5)")))
+      (li (pre (code "(+ 0 6)")))
+      (li (pre (code "6"))))
+
+    (h2 "Exercise 1.10")
+    (ul
+      (li (text "Ackermann's function:"))
+      (li (pre (code "(defn A [x y]
+  (cond (= y 0) 0
+        (= x 0) (* 2 y)
+        (= y 1) 2
+        :else (A (- x 1)
+                 (A x (- y 1)))))")))
+      (li (pre (code "(A 1 10)")))
+      (li (pre (code "(A 0 (A 1 9))")))
+      (li (pre (code "(* 2 (A 1 9))")))
+      (li (pre (code "(* 2 (A 0 (A 1 8)))")))
+      (li (pre (code "(* 2 (* 2 (A 1 8)))")))
+      (li (pre (code "(* 2 (* 2 (A 0 (A 1 7))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (A 1 7))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (A 0 (A 1 6)))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (A 1 6)))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (A 0 (A 1 5))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (A 1 5))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (A 0 (A 1 4)))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (A 1 4)))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (A 0 (A 1 3))))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (A 1 3))))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (A 0 (A 1 2)))))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (A 1 2)))))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (A 0 (A 1 1))))))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (A 1 1))))))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 2)))))))))")))
+      (li (pre (code "=> 2^10 => ") @c1-2-1/a-1-10)))
+    (hr)
+    (ul
+      (li (pre (code "(A 2 4)")))
+      (li (pre (code "(A 1 (A 2 3))")))
+      (li (pre (code "(A 1 (A 1 (A 2 2)))")))
+      (li (pre (code "(A 1 (A 1 (A 1 (A 2 1))))")))
+      (li (pre (code "(A 1 (A 1 (A 1 2)))")))
+      (li (pre (code "(A 1 (A 1 (A 0 (A 1 1))))")))
+      (li (pre (code "(A 1 (A 1 (* 2 (A 1 1))))")))
+      (li (pre (code "(A 1 (A 1 (* 2 2)))")))
+      (li (pre (code "(A 1 (A 1 4))")))
+      (li (pre (code "(A 1 (A 0 (A 1 3)))")))
+      (li (pre (code "(A 1 (A 0 (A 0 (A 1 2))))")))
+      (li (pre (code "(A 1 (A 0 (A 0 (A 0 (A 1 1)))))")))
+      (li (pre (code "(A 1 (A 0 (A 0 (A 0 2))))")))
+      (li (pre (code "(A 1 (A 0 (A 0 (* 2 2))))")))
+      (li (pre (code "(A 1 (A 0 (* 2 (* 2 2))))")))
+      (li (pre (code "(A 1 (* 2 (* 2 (* 2 2))))")))
+      (li (pre (code "(A 1 16)")))
+      (li (pre (code "(A 0 (A 1 15))")))
+      (li (pre (code "(A 0 (A 0 (A 1 14)))")))
+      (li (pre (code "...")))
+      (li (pre (code "(A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 1 1))))))))))))))))")))
+      (li (pre (code "(A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 2)))))))))))))))")))
+      (li (pre (code "(* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 (* 2 2)))))))))))))))")))
+      (li (pre (code "=> 2^16 => ") @c1-2-1/a-2-4)))
+    (hr)
+    (ul
+      (li (pre (code "(A 3 3)")))
+      (li (pre (code "(A 2 (A 3 2))")))
+      (li (pre (code "(A 2 (A 2 (A 3 1)))")))
+      (li (pre (code "(A 2 (A 2 2))")))
+      (li (pre (code "(A 2 (A 1 (A 2 1)))")))
+      (li (pre (code "(A 2 (A 1 2))")))
+      (li (pre (code "(A 2 (A 0 (A 1 1)))")))
+      (li (pre (code "(A 2 (A 0 2))")))
+      (li (pre (code "(A 2 (* 2 2))")))
+      (li (pre (code "(A 2 4)")))
+      (li (pre (code "(A 1 (A 2 3))")))
+      (li (pre (code "(A 1 (A 1 (A 2 2)))")))
+      (li (pre (code "(A 1 (A 1 (A 1 (A 2 1))))")))
+      (li (pre (code "(A 1 (A 1 (A 1 2)))")))
+      (li (pre (code "(A 1 (A 1 (A 0 (A 1 1))))")))
+      (li (pre (code "(A 1 (A 1 (A 0 2)))")))
+      (li (pre (code "(A 1 (A 1 (* 2 2)))")))
+      (li (pre (code "(A 1 (A 1 4))")))
+      (li (pre (code "(A 1 (A 0 (A 1 3)))")))
+      (li (pre (code "(A 1 (A 0 (A 0 (A 1 2))))")))
+      (li (pre (code "(A 1 (A 0 (A 0 (A 0 (A 1 1)))))")))
+      (li (pre (code "(A 1 (A 0 (A 0 (A 0 2))))")))
+      (li (pre (code "(A 1 (A 0 (A 0 (* 2 2))))")))
+      (li (pre (code "(A 1 (A 0 (A 0 4)))")))
+      (li (pre (code "(A 1 (* 2 (* 2 4)))")))
+      (li (pre (code "(A 1 16)")))
+      (li (pre (code "...")))      
+      (li (pre (code "=> 2^16 => ") @c1-2-1/a-3-3)))
+    (hr)
+    (ul
+      (li (pre (code "(define (f n) (A 0 n)) => f n => 2 * n")))
+      (li (pre (code "(define (g n) (A 1 n)) => g n => 2^n")))
+      (li (pre (code "(define (h n) (A 2 n)) => h n => 2^((2-1) * (2^n))"))))
+    (h2 "Exercise: Counting change")
+    (ul
+      (li (pre (code "(count-change 100) => ") @c1-2-1/cc-100)))
+    (h2 "Exercise 1.11")
+    (ul
+      (li (pre (code "(f1 0) => ") @c1-2-1/f1-0))
+      (li (pre (code "(f1 1) => ") @c1-2-1/f1-1))
+      (li (pre (code "(f1 2) => ") @c1-2-1/f1-2))
+      (li (pre (code "(f1 3) => ") @c1-2-1/f1-3))
+      (li (pre (code "(f1 4) => ") @c1-2-1/f1-4))
+      (li (pre (code "(f1 5) => ") @c1-2-1/f1-5))
+      (li (pre (code "(f1 6) => ") @c1-2-1/f1-6))
+      (li (pre (code "(f1 7) => ") @c1-2-1/f1-7))
+      (li (pre (code "(f1 8) => ") @c1-2-1/f1-8))
+      (li (pre (code "(f1 9) => ") @c1-2-1/f1-9))
+      (li (pre (code "(f1 10) => ") @c1-2-1/f1-10))
+      (li (pre (code "(f2 0) => ") @c1-2-1/f2-0))
+      (li (pre (code "(f2 1) => ") @c1-2-1/f2-1))
+      (li (pre (code "(f2 5) => ") @c1-2-1/f2-5))
+      (li (pre (code "(f2 6) => ") @c1-2-1/f2-6))
+      (li (pre (code "(f2 9) => ") @c1-2-1/f2-9))
+      (li (pre (code "(f2 10) => ") @c1-2-1/f2-10)))
+    (h2 "Exercise 1.12")
+    (ul
+      (li (pre (code "(row 1) => ") (str (c1-2-1/row 1))))
+      (li (pre (code "(row 2) => ") (str (c1-2-1/row 2))))
+      (li (pre (code "(row 3) => ") (str (c1-2-1/row 3))))
+      (li (pre (code "(row 4) => ") (str (c1-2-1/row 4))))
+      (li (pre (code "(row 5) => ") (str (c1-2-1/row 5)))))
+    (h2 "Exercise 1.13")
+    (ul
+      (li (pre (code "(fib-nearest-phi 4) => ") (c1-2-1/fib-nearest-phi 4)))
+      (li (pre (code "(fib-nearest-phi 5) => ") (c1-2-1/fib-nearest-phi 5)))
+      (li (pre (code "(fib-nearest-phi 6) => ") (c1-2-1/fib-nearest-phi 6)))
+      (li (pre (code "(fib-phi-psi 4) => ") (c1-2-1/fib-phi-psi 4)))
+      (li (pre (code "(fib-phi-psi 5) => ") (c1-2-1/fib-phi-psi 5)))
+      (li (pre (code "(fib-phi-psi 6) => ") (c1-2-1/fib-phi-psi 6))))
+    (hr)
+    (h1 "Chapter 1.2.2")
+    (h2 "Exercise 1.14")
+    (ul
+      (li (text "count-change 100-cents 5-coins:"))
+      (li (pre (code "(cc 100 5)")))
+      (li (pre (code "
+(+ (cc 100 4) 
+   (cc 50 5))")))
+      (li (pre (code "
+(+ (+ (cc 100 3) (cc 75 4)) 
+   (+ (cc 50 4) (cc 0 5)))")))
+      (li (pre (code "
+(+ (+ 21 19 17 15 13 11 9 7 5 3 1
+      (+ (cc 75 3) (cc 50 4))) 
+   (+ (+ (cc 50 3) (cc 25 4)) 1))")))
+      (li (pre (code "
+(+ (+ 21 19 17 15 13 11 9 7 5 3 1
+      (+ (+ 16 14 12 10 8 6 4 2 0)
+         (+ (cc 50 3) (cc 25 4)))) 
+   (+ (+ (+ 11 9 7 5 3 1)
+         (+ (cc 25 3) (cc 0 4))) 1))")))
+      (li (pre (code "
+(+ (+ 21 19 17 15 13 11 9 7 5 3 1
+      (+ (+ 16 14 12 10 8 6 4 2 0)
+         (+ (+ 11 9 7 5 3 1)
+            (+ (cc 25 3) (cc 0 4))))) 
+   (+ (+ (+ 11 9 7 5 3 1)
+         (+ (+ 6 4 2 0) 1)) 1))")))
+      (li (pre (code "
+(+ (+ 21 19 17 15 13 11 9 7 5 3 1
+      (+ (+ 16 14 12 10 8 6 4 2 0)
+         (+ (+ 11 9 7 5 3 1)
+            (+ (+ 6 4 2 0) 1)))) 
+   (+ (+ (+ 11 9 7 5 3 1)
+         (+ (+ 6 4 2 0) 1)) 1))")))
+      (li (pre (code "
+(cc 100 5) = ")) (text "~{c1-2-2/cc-100-5}")))
+    (h2 "Exercise 1.15")
+    (ul
+      (li
+        (pre (code "
+(sine 12.15) ;; => ")) (text "~{c1-2-2/sine-12-15} ... console logs \"applying p'\" 5 times")))
+    (hr)
+    (h1 "Chapter 1.2.4")
+    (h2 "Exercise 1.16")
+    (ul
+      (li (pre (code "
+(expt 2 3) = ")) @c1-2-4/expt-2-3)
+      )
+    (h2 "Exercise 1.17")
+    (ul
+      (li (pre (code "
+(my-* 2 7) = ")) @c1-2-4/my-*-2-7))
+    (h2 "Exercise 1.18")
+    (ul
+      (li (pre (code "
+(it-* 3 5) = ")) @c1-2-4/it-*-3-5))
+    (h2 "Exercise 1.19")
+    (ul
+      (li (pre (code "
+(fib 6) = ")) @c1-2-4/clever-fib-6))
+    (hr)
+    (h1 "Chapter 1.2.6")
+    (h2 "Exercise 1.21")
+    (ul
+      (li (pre (code "
+(smallest divisor 199) =")) @c1-2-6/smallest-divisor-199)
+      (li (pre (code "
+(smallest divisor 1999) =")) @c1-2-6/smallest-divisor-1999)
+      (li (pre (code "
+(smallest divisor 19999) =")) @c1-2-6/smallest-divisor-19999))
+    (h2 "Exercise 1.22")
+    (ul
+      (li (pre "
+ *** finding prime 1009 took: 5
+ *** finding prime 1013 took: 3
+ *** finding prime 1019 took: 2
+ *** finding prime 10007 took: 2
+ *** finding prime 10009 took: 3
+ *** finding prime 10037 took: 3
+ *** finding prime 100003 took: 7
+ *** finding prime 100019 took: 2
+ *** finding prime 100043 took: 1
+ *** finding prime 1000003 took: 2
+ *** finding prime 1000033 took: 3
+ *** finding prime 1000037 took: 1
+ *** finding prime 10000019 took: 4
+ *** finding prime 10000079 took: 3
+ *** finding prime 10000103 took: 3")))
+    (h2 "Exercise 1.23")
+    (ul
+      (li (pre "
+ *** finding prime 1009 took: 5
+ *** finding prime 1013 took: 1
+ *** finding prime 1019 took: 1
+ *** finding prime 10007 took: 4
+ *** finding prime 10009 took: 2
+ *** finding prime 10037 took: 3
+ *** finding prime 100003 took: 6
+ *** finding prime 100019 took: 4
+ *** finding prime 100043 took: 2
+ *** finding prime 1000003 took: 2
+ *** finding prime 1000033 took: 4
+ *** finding prime 1000037 took: 2
+ *** finding prime 10000019 took: 3
+ *** finding prime 10000079 took: 6
+ *** finding prime 10000103 took: 4")))
+    (h2 "Exercise 1.24")
+    (ul
+      (li (pre "
+ *** finding prime 1009 took: 14
+ *** finding prime 1013 took: 3
+ *** finding prime 1019 took: 3
+ *** finding prime 10007 took: 2
+ *** finding prime 10009 took: 1
+ *** finding prime 10037 took: 4
+ *** finding prime 100003 took: 3
+ *** finding prime 100019 took: 2
+ *** finding prime 100043 took: 2
+ *** finding prime 1000003 took: 3
+ *** finding prime 1000033 took: 3
+ *** finding prime 1000037 took: 1
+ *** finding prime 10000019 took: 3
+ *** finding prime 10000079 took: 3
+ *** finding prime 10000103 took: 2
+")))
+    (hr)
+    (h1 "Chapter 1.3.1")
+    (h2 "Exercise 1.29")
+    (ul
+      (li (pre (code "
+(simpsons cube 0 1 100) = ") @c1-3-1/simpsons-cube-0-1-100))
+      (li (pre (code "
+(simpsons cube 0 1 1000) = ") @c1-3-1/simpsons-cube-0-1-1000)))
+    (h2 "Exercise 1.30")
+    (ul
+      (li (pre (code "
+(sum-iter cube 1 inc 10) = ") @c1-3-1/iterative-sum-cubes-1-10)))
+    (h2 "Exercise 1.31: Iterative")
+    (ul
+      (li (pre (code "
+(pi-prod 1000) = ") @c1-3-1/pi-prod-1000)))
+    (h2 "Exercise 1.31: Recursive")
+    (ul
+      (li (pre (code "
+(pi-prod-recursive 1000) = ") @c1-3-1/pi-prod-recursive-1000)))
+    (h2 "Exercise 1.32: Iterative")
+    (ul
+      (li (pre (code "
+(acc-sum-cubes 0 10) = ") @c1-3-1/acc-sum-cubes-0-10)))
+    (ul
+      (li (pre (code "
+(acc-sum-simple 0 5) = ") @c1-3-1/acc-sum-simple-0-5)))
+    (ul
+      (li (pre (code "
+(acc-product-cubs 2 3) = ") @c1-3-1/acc-product-cubes-2-3)))
+    (ul
+      (li (pre (code "
+(acc-product-simple 5 6) = ") @c1-3-1/acc-product-simple-5-6)))
+    (h2 "Exercise 1.32: Recursive")
+    (ul
+      (li (pre (code "
+(acc-sum-recursive-cubes 0 10) = ") @c1-3-1/acc-sum-recursive-cubes-0-10)))
+    (h2 "Exercise 1.33")
+    (ul
+      (li (pre (code "
+(filtered-acc-sum-primes 0 10) = ") @c1-3-1/filtered-acc-sum-primes-0-10)))
+    (ul
+      (li (pre (code "
+(filtered-acc-gcd-product 10) = ") @c1-3-1/filtered-acc-gcd-product-10)))
+    (hr)
+    (h1 "Chapter 1.3.2")
+    (h2 "Exercise 1.34")
+    (ul
+      (a-item "(defn f [g] (g 2))")
+      (a-item "(f f) ;=> (2 2)"))
+    (hr)
+    (h1 "Chapter 1.3.3")
+    (h2 "Exercise 1.35")
+    (ul
+      (a-item (str "(golden-ratio) = " @c1-3-3/golden-ratio-value
+                   ", steps: " @c1-3-3/golden-ratio-steps)))
+    (h2 "Exercise 1.36")
+    (ul
+      (a-item (str "(x-to-x-1000) = " @c1-3-3/x-to-x-1000-value
+                   ", steps: " @c1-3-3/x-to-x-1000-steps))
+      (a-item (str "(x-to-x-1000-avg-damp) = " @c1-3-3/x-to-x-1000-avg-damp-value
+                   ", steps: " @c1-3-3/x-to-x-1000-avg-damp-steps)))
+    (h2 "Exercise 1.37: Recursive")
+    (ul
+      (a-item "(cont-frac-golden-ratio 14) = " @c1-3-3/cont-frac-golden-ratio-14))
+    (h2 "Exercise 1.37: Iterative")
+    (ul
+      (a-item "(cont-frac-iter-golden-ratio 14) = " @c1-3-3/cont-frac-iter-golden-ratio-14))
+    (h2 "Exercise 1.38")
+    (ul
+      (a-item "(nat-log 10) = " @c1-3-3/nat-log-10))
+    (h2 "Exercise 1.39")
+    (ul
+      (a-item "(tan-cf 10 100) = " @c1-3-3/tan-cf-10-100))
+    (hr)
+    (h1 "Chapter 1.3.4")
+    (h2 "Exercise 1.40")
+    (ul
+      (a-item "
+(defn cubic [a b c]
+  (fn [x]
+    (+ (* a (cube x))
+       (* b (square x))
+       c)))")
+      (a-item "(newtons-method (cubic 1 2 3) 1.0) = " @c1-3-4/newtons-method-cubic-1-2-3))
+    (h2 "Exercise 1.41")
+    (ul
+      (a-item "(((dbl (dbl dbl)) inc) 5) = " @c1-3-4/inc-16-5))
+    (h2 "Exercise 1.42")
+    (ul
+      (a-item "((compose square inc) 6) = " @c1-3-4/compose-square-inc-6))
+    (h2 "Exercise 1.43")
+    (ul
+      (a-item "((repeated square 2) 5) = " @c1-3-4/repeated-square-2-5))
+    (h2 "Exercise 1.45")
+    (ul
+      (a-item "(nth-root 3 1000) = " @c1-3-4/nth-root-3-1000)
+      (a-item "(nth-root 4 10000) = " @c1-3-4/nth-root-4-10000)
+      (a-item "(nth-root 5 100000) = " @c1-3-4/nth-root-5-100000))
+    (h2 "Exercise 1.46")
+    (ul
+      (a-item "(sqrt-iter-improve 9) = " @c1-3-4/sqrt-iter-improve-9))
+    ))

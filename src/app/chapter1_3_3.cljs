@@ -2,6 +2,8 @@
   (:require
    [javelin.core :refer [defc defc= cell=]]))
 
+(enable-console-print!)
+
 ;; Exercise 1.35
 (def tolerance 0.00001)
 

@@ -1,5 +1,4 @@
-(ns app.chapter1-2-5
-  (:require [javelin.core :refer [defc]]))
+(ns app.chapter1-2-5)
 
 ;; Exercise 1.20
 

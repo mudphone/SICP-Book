@@ -1,4 +1,6 @@
-(page "chapter1-1.html")
+(ns app.chapter1-1
+  (:require
+   [javelin.core :refer [cell cell=]]))
 
 ;; Exercise 1.1
 (def ex1-1a (cell 10))
@@ -82,66 +84,3 @@
 (defn cube-rt [x]
   (cube-rt-iter 1.0 x))
 
-
-(html
-  (head)
-  (body
-    (h1 "Exercise 1.1")
-    (ul
-      (li (code "10 => ") ex1-1a)
-      (li (code "(+ 5 3 4) => ") ex1-1b)
-      (li (code "(- 9 1) => ") ex1-1c)
-      (li (code "(/ 6 2) => ") ex1-1d)
-      (li (code "(+ (* 2 4) (- 4 6)) => ") ex1-1e)
-      (li (code "(cell 3) => ") xa)
-      (li (code "(cell= (+ xa 1)) => ") xb)
-      (li (code "(+ xa xb (* xa xb)) => ") ex1-1h)
-      (li (pre (code "(= xa xb) => ") (text "~{ex1-1i}")))
-      (li (pre (code "(if (and 
-      (> xb xa) 
-      (< xb (* xa xb)))
-      xb
-      xa) => ") ex1-1j))
-      (li (pre (code "(cond (= xa 4) 6
-      (= xb 4) (+ 6 7 xa)
-      :else 25) => ") ex1-1k))
-      (li (pre (code "(+ 2 (if 
-       (> xb xa)
-       xb
-       xa)) => ") ex1-1l))
-      (li (pre (code "(* (cond (> xa xb) xa
-         (< xa xb) xb
-         :else -1)
-   (+ xa 1)) => ") ex1-1m)))
-
-    (h1 "Exercise 1.2")
-    (ul
-      (li (pre (code "(/ (+ 5 (/ 1 4)
-        (- 2 (- 3 (+ 6 (/ 1 3)))))
-   (* 3 (- 6 2) (- 2 7))) => ") ex1-2)))
-
-    (h1 "Exercise 1.3")
-    (ul
-      (li (pre (code "(high-sum-of-squares 1 3 5) => ") ex1-3)))
-
-    (h1 "Exercise 1.4")
-    (ul
-      (li (text "`a-plus-abs-b` evals to `+` if `b` is positive, and `-` if b is negative. Thus, `a` is added to the absolute value of `b`.")))
-
-    (h1 "Exercise 1.5")
-    (ul
-      (li (text "Applicative order evaluation results in an infinite loop. Normal order evaluation would result in `0`.")))
-
-    (h1 "Exercise 1.6")
-    (ul
-      (li (text "Applicative order evaluation results in an infinite loop (again). `new-if` is a function (not a macro) so the operands are evaluated, resulting in `sqrt-iter` calling itself.")))
-
-    (h1 "Exercise 1.7")
-    (ul
-      (li (pre (code "(sqrt 4) => ") (sqrt 4)))
-      (li (pre (code "(sqrt 25) => ") (sqrt 25))))
-
-    (h1 "Exercise 1.8")
-    (ul
-      (li (pre (code "(cube-rt 8) => ") (cube-rt 8)))
-      (li (pre (code "(cube-rt 125) => ") (cube-rt 125))))))
