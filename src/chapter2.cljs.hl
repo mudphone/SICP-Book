@@ -172,4 +172,17 @@
     (h2 "Exercise 2.21")
     (ul
       (a-item "(square-list1 (list' 1 2 3 4)) = " @c2-2-1/sq-list1-1234)
-      (a-item "(square-list2 (list' 1 2 3 4)) = " @c2-2-1/sq-list2-1234))))
+      (a-item "(square-list2 (list' 1 2 3 4)) = " @c2-2-1/sq-list2-1234))
+    (h2 "Exercise 2.22")
+    (ul
+      (li "The first example builds the list from right to left.")
+      (li "The second example attemps to cons a list onto an atom.")
+      (a-item "(square-list3 (list' 1 2 3 4)) = " @c2-2-1/sq-list3-1234))
+    (h2 "Exercise 2.23")
+    (ul
+      (a-item "(for-each' println (list' 1 2 3 4))")
+      (a-item ";; => 1")
+      (a-item ";; => 2")
+      (a-item ";; => 3")
+      (a-item ";; => 4")
+      (a-item "true"))))

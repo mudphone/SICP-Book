@@ -23,8 +23,22 @@
                (recur (str acc " "(car' r)) (cdr' r))))]
     (go "(" xs)))
 
+(defn reverse' [xs]
+  (let [go (fn [acc r]
+             (if (nil? r)
+               acc
+               (recur (cons' (car' r) acc) (cdr' r))))]
+    (go nil xs)))
+
 (defn map' [proc items]
   (if (null?' items)
     nil
     (cons' (proc (car' items))
            (map' proc (cdr' items)))))
+
+(defn for-each' [proc items]
+  (if (null?' items)
+    true
+    (do
+      (proc (car' items))
+      (recur proc (cdr' items)))))
