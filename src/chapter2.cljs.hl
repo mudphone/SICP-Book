@@ -168,4 +168,8 @@
     (h2 "Exercise 2.20")
     (ul
       (a-item "(same-parity 1 2 3 4 5 6 7) = " (str @c2-2-1/same-parity-odd))
-      (a-item "(same-parity 2 3 4 5 6 7) = " (str @c2-2-1/same-parity-even)))))
+      (a-item "(same-parity 2 3 4 5 6 7) = " (str @c2-2-1/same-parity-even)))
+    (h2 "Exercise 2.21")
+    (ul
+      (a-item "(square-list1 (list' 1 2 3 4)) = " @c2-2-1/sq-list1-1234)
+      (a-item "(square-list2 (list' 1 2 3 4)) = " @c2-2-1/sq-list2-1234))))

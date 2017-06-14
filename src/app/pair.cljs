@@ -13,9 +13,18 @@
     (cons' (first xs) (apply list' (rest xs)))
     nil))
 
+(defn null?' [xs]
+  (nil? xs))
+
 (defn list-str [xs]
   (let [go (fn [acc r]
-             (if (nil? r)
+             (if (null?' r)
                (str acc " )")
                (recur (str acc " "(car' r)) (cdr' r))))]
     (go "(" xs)))
+
+(defn map' [proc items]
+  (if (null?' items)
+    nil
+    (cons' (proc (car' items))
+           (map' proc (cdr' items)))))

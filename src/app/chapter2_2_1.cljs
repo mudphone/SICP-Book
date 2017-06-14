@@ -1,7 +1,7 @@
 (ns app.chapter2-2-1
   (:require
    [javelin.core :refer [defc]]
-   [app.pair :refer [car' cdr' cons' list' list-str]]))
+   [app.pair :refer [car' cdr' cons' list' list-str map' null?']]))
 
 ;; Exercise 2.17
 (defn last-pair [x]
@@ -51,3 +51,18 @@
 
 (defc same-parity-odd (same-parity 1 2 3 4 5 6 7))
 (defc same-parity-even (same-parity 2 3 4 5 6 7))
+
+;; Exercise 2.21
+(defn sq [x] (* x x))
+
+(defn square-list1 [items]
+  (if (null?' items)
+      nil
+      (cons' (sq (car' items))
+             (square-list1 (cdr' items)))))
+
+(defn square-list2 [items]
+  (map' sq items))
+
+(defc sq-list1-1234 (list-str (square-list1 (list' 1 2 3 4))))
+(defc sq-list2-1234 (list-str (square-list2 (list' 1 2 3 4))))
