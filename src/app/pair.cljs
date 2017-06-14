@@ -21,9 +21,10 @@
 
 (defn list-str [xs]
   (let [go (fn [acc r]
-             (if (null?' r)
-               (str acc " )")
-               (recur (str acc " "(car' r)) (cdr' r))))]
+             (cond
+               (null?' r) (str acc " )")
+               (not (pair? r)) r
+               :else (recur (str acc " " (list-str (car' r))) (cdr' r))))]
     (go "(" xs)))
 
 (defn reverse' [xs]
@@ -62,3 +63,9 @@
     (not (pair? x)) 1
     :else (+ (count-leaves (car' x))
              (count-leaves (cdr' x)))))
+
+(defn append [list1 list2]
+  (if (null?' list1)
+      list2
+      (cons' (car' list1)
+             (append (cdr' list1) list2))))
