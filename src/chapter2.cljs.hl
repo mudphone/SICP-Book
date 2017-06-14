@@ -180,9 +180,36 @@
       (a-item "(square-list3 (list' 1 2 3 4)) = " @c2-2-1/sq-list3-1234))
     (h2 "Exercise 2.23")
     (ul
-      (a-item "(for-each' println (list' 1 2 3 4))")
+      (a-item "(for-each println (list' 1 2 3 4))")
       (a-item ";; => 1")
       (a-item ";; => 2")
       (a-item ";; => 3")
       (a-item ";; => 4")
-      (a-item "true"))))
+      (a-item "true"))
+    (h2 "Exercise 2.24")
+    (ul
+      (a-item "
+(list' 1 (list' 2 (list' 3 4)))
+
+ /\\
+1 /\\
+ 2 /\\
+  3 /\\
+   4  nil"))
+    (h2 "Exercise 2.25")
+    (ul
+      (a-item "(car' (cdr' (cdr' (cdr' (list' 1 3 (list' 5 7) 9))))) = " @c2-2-1/seven1)
+      (a-item "(car' (car' (list' (list' 7)))) = " @c2-2-1/seven2)
+      (a-item "
+(car'                
+ (cdr'
+  (car'
+   (cdr'
+    (car'
+     (cdr'
+      (car'
+       (cdr'
+        (car'
+         (cdr'
+          (car'
+           (cdr' (list' 1 (list' 2 (list' 3 (list' 4 (list' 5 (list' 6 7)))))))))))))))))) =  " @c2-2-1/seven3))))
