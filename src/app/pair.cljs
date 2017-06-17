@@ -34,6 +34,17 @@
                (recur (cons' (car' r) acc) (cdr' r))))]
     (go nil xs)))
 
+(defn deep-reverse [xs]
+  (let [go (fn [acc r]
+             (if (nil? r)
+               acc
+               (let [c (car' r)
+                     x (if (not (pair? c))
+                         c
+                         (deep-reverse c))]
+                 (recur (cons' x acc) (cdr' r)))))]
+    (go nil xs)))
+
 (defn map' [proc items]
   (if (null?' items)
     nil

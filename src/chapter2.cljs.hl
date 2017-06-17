@@ -223,4 +223,7 @@
       (a-item "
 (cons' x y) = " @c2-2-1/cons-lists)
       (a-item "
-(list' x y) = " @c2-2-1/list-lists))))
+(list' x y) = " @c2-2-1/list-lists))
+    (h2 "Exercise 2.27")
+    (ul
+      (a-item "(deep-reverse (list' (list' 1 2) (list' 3 4))) = " @c2-2-1/deep-reverse-12-34))))

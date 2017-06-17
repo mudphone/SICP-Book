@@ -1,7 +1,8 @@
 (ns app.chapter2-2-1
   (:require
    [javelin.core :refer [defc]]
-   [app.pair :refer [append car' cdr' cons' list' list-str map' null?' reverse']]))
+   [app.pair :refer [append car' cdr' cons' deep-reverse
+                     list' list-str map' null?' reverse']]))
 
 ;; Exercise 2.17
 (defn last-pair [x]
@@ -94,3 +95,6 @@
 (defc append-lists (list-str (append list-x list-y)))
 (defc cons-lists (list-str (cons' list-x list-y)))
 (defc list-lists (list-str (list' list-x list-y)))
+
+;; Exercise 2.27
+(defc deep-reverse-12-34 (list-str (deep-reverse (list' (list' 1 2) (list' 3 4)))))
