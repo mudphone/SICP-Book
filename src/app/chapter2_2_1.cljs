@@ -2,7 +2,7 @@
   (:require
    [javelin.core :refer [defc]]
    [app.pair :refer [append car' cdr' cons' deep-reverse
-                     list' list-str map' null?' reverse']]))
+                     list' list-str map' null?' pair? reverse']]))
 
 ;; Exercise 2.17
 (defn last-pair [x]
@@ -97,4 +97,20 @@
 (defc list-lists (list-str (list' list-x list-y)))
 
 ;; Exercise 2.27
-(defc deep-reverse-12-34 (list-str (deep-reverse (list' (list' 1 2) (list' 3 4)))))
+(def tree-x (list' (list' 1 2) (list' 3 4)))
+(defc deep-reverse-12-34 (list-str (deep-reverse tree-x)))
+
+;; Exercise 2.28
+(defn fringe [x]
+  (cond
+    (null?' x) nil
+    (not (pair? x)) x
+
+    (pair? (car' x))
+    (fringe (append (car' x) (cdr' x)))
+    
+    :else (cons' (car' x)
+                 (fringe (cdr' x)))))
+
+(defc fringe-1-6 (list-str (fringe (list' (list' 1 (list' 2 3) 4) (list' 5 6)))))
+
