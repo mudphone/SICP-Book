@@ -68,6 +68,14 @@
       (car' items)
       (recur (cdr' items) (dec n))))
 
+(defn list-n [items ref]
+  (let [go (fn [n]
+             (cond
+               (>= n (length items)) nil
+               (= (list-ref items n) ref) n
+               :else (recur (inc n))))]
+    (go 0)))
+
 (defn count-leaves [x]
   (cond
     (null?' x) 0
