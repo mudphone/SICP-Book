@@ -296,4 +296,8 @@
       (a-item "(fold-right / 1 (list' 1 2 3)) = " (cell= c2-2-3/fr-d-1-123))
       (a-item "(fold-left / 1 (list' 1 2 3)) = " (cell= c2-2-3/fl-d-1-123))
       (a-item "(fold-right list' nil (list' 1 2 3)) = " (cell= c2-2-3/fr-l-nil-123))
-      (a-item "(fold-left list' nil (list' 1 2 3)) = " (cell= c2-2-3/fl-l-nil-123)))))
+      (a-item "(fold-left list' nil (list' 1 2 3)) = " (cell= c2-2-3/fl-l-nil-123)))
+    (h2 "Exercise 2.39")
+    (ul
+      (a-item "(rev-fr (list' 1 2 3)) = " (cell= c2-2-3/rev-fr-123))
+      (a-item "(rev-fl (list' 1 2 3)) = " (cell= c2-2-3/rev-fl-123)))))

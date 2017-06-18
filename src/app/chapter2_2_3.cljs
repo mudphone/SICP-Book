@@ -1,7 +1,7 @@
 (ns app.chapter2-2-3
   (:require
    [javelin.core :refer [defc]]
-   [app.pair :refer [accumulate accumulate-n cons' enumerate-interval
+   [app.pair :refer [accumulate accumulate-n append cons' enumerate-interval
                      enumerate-tree filter' fold-left fold-right
                      list' list-n list-str map' map-n pair?]]))
 
@@ -87,3 +87,16 @@
 (defc fl-d-1-123 (fold-left / 1 (list' 1 2 3)))
 (defc fr-l-nil-123 (list-str (fold-right list' nil (list' 1 2 3))))
 (defc fl-l-nil-123 (list-str (fold-left list' nil (list' 1 2 3))))
+
+;; Exercise 2.39
+(defn rev-fr [sequence]
+  (fold-right (fn [x y]
+                (append y (list' x))) nil sequence))
+
+(defc rev-fr-123 (list-str (rev-fr (list' 1 2 3))))
+
+(defn rev-fl [sequence]
+  (fold-left (fn [x y]
+               (cons' y x)) nil sequence))
+
+(defc rev-fl-123 (list-str (rev-fl (list' 1 2 3))))

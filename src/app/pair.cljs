@@ -133,6 +133,7 @@
              (accumulate-n op init (map' cdr' seqs)))))
 
 (def fold-right accumulate)
+
 (defn fold-left [op initial sequence]
   (let [it (fn [result r]
              (if (null?' r)
