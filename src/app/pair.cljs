@@ -118,3 +118,9 @@
         (not (pair? tree)) (list' tree)
         :else (append (enumerate-tree (car' tree))
                       (enumerate-tree (cdr' tree)))))
+
+(defn accumulate-n [op init seqs]
+  (if (null?' (car' seqs))
+      nil
+      (cons' (accumulate op init (map' car' seqs))
+             (accumulate-n op init (map' cdr' seqs)))))
