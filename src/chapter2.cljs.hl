@@ -254,4 +254,11 @@
 (def tree (list' 1 (list' 2 (list' 3 4) 5) (list' 6 7)))
 (square-tree tree) = " @c2-2-1/square-a-tree)
       (a-item "
-(sqaure-tree-map tree) = " @c2-2-1/square-map-a-tree))))
+(sqaure-tree-map tree) = " @c2-2-1/square-map-a-tree))
+    (h2 "Exercise 2.31")
+    (ul
+      (a-item "
+(square-tree-map' tree) = " @c2-2-1/square-map2-a-tree))
+    (h2 "Exercise 2.32")
+    (ul
+      (a-item "(subsets (list' 1 2 3)) = " @c2-2-1/subsets-123))))

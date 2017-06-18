@@ -80,3 +80,10 @@
       list2
       (cons' (car' list1)
              (append (cdr' list1) list2))))
+
+(defn tree-map [proc tree]
+    (map' (fn [sub-tree]
+            (if (pair? sub-tree)
+              (tree-map proc sub-tree)
+              (proc sub-tree)))
+        tree))

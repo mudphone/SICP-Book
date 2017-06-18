@@ -2,7 +2,8 @@
   (:require
    [javelin.core :refer [defc]]
    [app.pair :refer [append car' cdr' cons' deep-reverse
-                     list' list-str map' null?' pair? reverse']]))
+                     list' list-str map' null?' pair? reverse'
+                     tree-map]]))
 
 ;; Exercise 2.17
 (defn last-pair [x]
@@ -237,3 +238,19 @@
         tree))
 
 (defc square-map-a-tree (list-str (square-tree-map tree)))
+
+;; Exercise 2.31
+(defn square-tree-map' [tree]
+  (tree-map sq tree))
+
+(defc square-map2-a-tree (list-str (square-tree-map' tree)))
+
+;; Exercise 2.32
+(defn subsets [s]
+  (if (null?' s)
+      (list' nil)
+      (let [r (subsets (cdr' s))]
+        (append r (map' (fn [x] (cons' (car' s) x))
+                        r)))))
+
+(defc subsets-123 (list-str (subsets (list' 1 2 3))))
