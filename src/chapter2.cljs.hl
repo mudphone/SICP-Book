@@ -247,4 +247,11 @@
            (make-branch 1 4) 
            (make-branch 1 (make-mobile 
                            (make-branch 2 2) 
-                           (make-branch 2 2))))) = " @c2-2-1/balanced-mobile-14-22-22))))
+                           (make-branch 2 2))))) = " @c2-2-1/balanced-mobile-14-22-22))
+    (h2 "Exercise 2.30")
+    (ul
+      (a-item "
+(def tree (list' 1 (list' 2 (list' 3 4) 5) (list' 6 7)))
+(square-tree tree) = " @c2-2-1/square-a-tree)
+      (a-item "
+(sqaure-tree-map tree) = " @c2-2-1/square-map-a-tree))))

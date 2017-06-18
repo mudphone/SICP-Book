@@ -217,3 +217,23 @@
 (def balanced-mobile (make-mobile (make-branch 1 4) (make-branch 1 (make-mobile (make-branch 2 2) (make-branch 2 2)))))
 
 (defc balanced-mobile-14-22-22 (str (balanced balanced-mobile)))
+
+;; Exercise 2.30
+(defn square-tree [tree]
+  (cond (null?' tree) nil
+        (not (pair? tree)) (sq tree)
+        :else (cons' (square-tree (car' tree))
+                     (square-tree (cdr' tree)))))
+
+(def tree (list' 1 (list' 2 (list' 3 4) 5) (list' 6 7)))
+
+(defc square-a-tree (list-str (square-tree tree)))
+
+(defn square-tree-map [tree]
+  (map' (fn [sub-tree]
+          (if (pair? sub-tree)
+            (square-tree-map sub-tree)
+            (sq sub-tree)))
+        tree))
+
+(defc square-map-a-tree (list-str (square-tree-map tree)))
