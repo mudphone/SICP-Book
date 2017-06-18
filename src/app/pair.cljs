@@ -51,6 +51,13 @@
     (cons' (proc (car' items))
            (map' proc (cdr' items)))))
 
+(declare accumulate)
+(defn map-n [proc & seqs]
+  (if (null?' (car' (first seqs)))
+    nil
+    (cons' (apply proc (map car' seqs))
+           (apply (partial map-n proc) (map cdr' seqs)))))
+
 (defn for-each [proc items]
   (if (null?' items)
     true
@@ -124,3 +131,12 @@
       nil
       (cons' (accumulate op init (map' car' seqs))
              (accumulate-n op init (map' cdr' seqs)))))
+
+(def fold-right accumulate)
+(defn fold-left [op initial sequence]
+  (let [it (fn [result r]
+             (if (null?' r)
+               result
+               (recur (op result (car' r))
+                      (cdr' r))))]
+    (it initial sequence)))
