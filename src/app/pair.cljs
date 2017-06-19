@@ -9,6 +9,8 @@
 (defn cdr' [p] (:cdr p))
 
 (defn cadr' [p] (car' (cdr' p)))
+(defn cddr' [p] (cdr' (cdr' p)))
+(defn caddr' [p] (car' (cddr' p)))
 
 (defn list' [& xs]
   (if (seq xs)

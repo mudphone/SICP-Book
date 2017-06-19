@@ -305,4 +305,7 @@
     (ul
       (a-item "(unique-pairs 3) = " (cell= c2-2-3/unique-pairs-3))
       (a-item "(prime-sum-pairs 6) = " (cell= c2-2-3/prime-sum-pairs-6))
-      (a-item "(prime-sum-pairs2 6) = " (cell= c2-2-3/prime-sum-pairs2-6)))))
+      (a-item "(prime-sum-pairs2 6) = " (cell= c2-2-3/prime-sum-pairs2-6)))
+    (h2 "Exercise 2.41")
+    (ul
+      (a-item "(ordered-triples 6 12) = " (cell= c2-2-3/ordered-triples-6-12)))))

@@ -2,7 +2,7 @@
   (:require
    [javelin.core :refer [defc]]
    [app.chapter1-2-6 :refer [prime?]]
-   [app.pair :refer [accumulate accumulate-n append car' cadr'
+   [app.pair :refer [accumulate accumulate-n append car' cadr' caddr'
                      cons' enumerate-interval enumerate-tree
                      filter' flatmap fold-left fold-right
                      list' list-n list-str map' map-n pair?
@@ -133,5 +133,25 @@
         (filter' prime-sum?
                  (unique-pairs n))))
 
-(defc prime-sum-pairs-6 (list-str (prime-sum-pairs 6)))
+(defc prime-sum-pairs-6  (list-str (prime-sum-pairs  6)))
 (defc prime-sum-pairs2-6 (list-str (prime-sum-pairs2 6)))
+
+;; Exercise 2.41
+(defn unique-triples [n]
+  (flatmap (fn [i]
+             (flatmap (fn [j]
+                        (map' (fn [k] (list' i j k))
+                              (enumerate-interval 1 (dec j))))
+                      (enumerate-interval 1 (dec i))))
+           (enumerate-interval 1 n)))
+
+(defn is-triple-sum? [target]
+  (fn [triple]
+    (= (+ (car' triple) (cadr' triple) (caddr' triple))
+       target)))
+
+(defn ordered-triples [n target-sum]
+  (filter' (is-triple-sum? target-sum)
+           (unique-triples n)))
+
+(defc ordered-triples-6-12 (list-str (ordered-triples 6 12)))
