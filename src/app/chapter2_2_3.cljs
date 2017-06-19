@@ -1,9 +1,12 @@
 (ns app.chapter2-2-3
   (:require
    [javelin.core :refer [defc]]
-   [app.pair :refer [accumulate accumulate-n append cons' enumerate-interval
-                     enumerate-tree filter' fold-left fold-right
-                     list' list-n list-str map' map-n pair?]]))
+   [app.chapter1-2-6 :refer [prime?]]
+   [app.pair :refer [accumulate accumulate-n append car' cadr'
+                     cons' enumerate-interval enumerate-tree
+                     filter' flatmap fold-left fold-right
+                     list' list-n list-str map' map-n pair?
+                     remove']]))
 
 ;; Exercise 2.33
 (defn map-accumulate [p sequence]
@@ -100,3 +103,35 @@
                (cons' y x)) nil sequence))
 
 (defc rev-fl-123 (list-str (rev-fl (list' 1 2 3))))
+
+;; Exercise 2.40
+(defn unique-pairs [n]
+  (flatmap (fn [i]
+             (map' (fn [j] (list' i j))
+                   (enumerate-interval 1 (dec i))))
+           (enumerate-interval 1 n)))
+
+(defc unique-pairs-3 (list-str (unique-pairs 3)))
+
+(defn make-pair-sum [pair]
+  (list' (car' pair) (cadr' pair) (+ (car' pair) (cadr' pair))))
+
+(defn prime-sum? [pair]
+  (prime? (+ (car' pair) (cadr' pair))))
+
+(defn prime-sum-pairs [n]
+  (map' make-pair-sum
+        (filter' prime-sum?
+                 (flatmap
+                  (fn [i]
+                    (map' (fn [j] (list' i j))
+                          (enumerate-interval 1 (- i 1))))
+                  (enumerate-interval 1 n)))))
+
+(defn prime-sum-pairs2 [n]
+  (map' make-pair-sum
+        (filter' prime-sum?
+                 (unique-pairs n))))
+
+(defc prime-sum-pairs-6 (list-str (prime-sum-pairs 6)))
+(defc prime-sum-pairs2-6 (list-str (prime-sum-pairs2 6)))

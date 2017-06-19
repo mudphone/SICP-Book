@@ -300,4 +300,9 @@
     (h2 "Exercise 2.39")
     (ul
       (a-item "(rev-fr (list' 1 2 3)) = " (cell= c2-2-3/rev-fr-123))
-      (a-item "(rev-fl (list' 1 2 3)) = " (cell= c2-2-3/rev-fl-123)))))
+      (a-item "(rev-fl (list' 1 2 3)) = " (cell= c2-2-3/rev-fl-123)))
+    (h2 "Exercise 2.40")
+    (ul
+      (a-item "(unique-pairs 3) = " (cell= c2-2-3/unique-pairs-3))
+      (a-item "(prime-sum-pairs 6) = " (cell= c2-2-3/prime-sum-pairs-6))
+      (a-item "(prime-sum-pairs2 6) = " (cell= c2-2-3/prime-sum-pairs2-6)))))

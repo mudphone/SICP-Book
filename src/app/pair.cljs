@@ -8,6 +8,8 @@
 (defn car' [p] (:car p))
 (defn cdr' [p] (:cdr p))
 
+(defn cadr' [p] (car' (cdr' p)))
+
 (defn list' [& xs]
   (if (seq xs)
     (cons' (first xs) (apply list' (rest xs)))
@@ -141,3 +143,11 @@
                (recur (op result (car' r))
                       (cdr' r))))]
     (it initial sequence)))
+
+(defn flatmap [proc seq]
+  (accumulate append nil (map' proc seq)))
+
+(defn remove' [item sequence]
+  (filter' (fn [x]
+             (not (= x item)))
+           sequence))
