@@ -155,3 +155,55 @@
            (unique-triples n)))
 
 (defc ordered-triples-6-12 (list-str (ordered-triples 6 12)))
+
+;; Exercise 2.42
+(defn abs [x]
+  (if (< x 0) (- x) x))
+
+(defn is-diag? [[k1 r1] [k2 r2]]
+  (let [col-diff (- k1 k2)
+        row-diff (- r1 r2)]
+    (= (abs col-diff) (abs row-diff))))
+
+(defn safe?
+  "determines for a set of positions, whether the queen in the kth column is safe with respect to the others. (Note that we need only check whether the new queen is safe -- the other queens are already guaranteed safe with respect to each other.)"
+  [k positions]
+  (let [new-row (get positions k)
+        others (dissoc positions k)
+        other-rows (vals others)]
+    (or (nil? other-rows)
+        (and (not-any? #{new-row} other-rows)
+             (not-any? (partial is-diag? [k new-row]) others)))))
+
+(defn adjoin-position
+  "adjoins a new row-column position to a set of positions"
+  [new-row k rest-of-queens]
+  (assoc rest-of-queens k new-row))
+
+;; represents an empty set of positions
+(def empty-board {})
+
+(defn enumerate-intervalv [low high]
+  (if (> low high)
+      []
+      (into [low] (enumerate-intervalv (+ low 1) high))))
+
+(defn queen-cols [board-size k]
+  (if (= k 0)
+    [empty-board]
+    (filterv
+     #(safe? k %)
+     (mapcat
+      (fn [rest-of-queens]
+        (map #(adjoin-position % k rest-of-queens)
+              (enumerate-intervalv 1 board-size)))
+      (queen-cols board-size (- k 1))))))
+
+(defn queens
+  "rest-of-queens: a way to place k - 1 queens in the first k - 1 columns
+   new-row: a proposed row in which to place the queen for the kth column
+   queen-cols:  returns the sequence of all ways to place queens in the first k columns of the board"
+  [board-size]
+  (queen-cols board-size board-size))
+
+(defc queens4 (str (queens 4)))
