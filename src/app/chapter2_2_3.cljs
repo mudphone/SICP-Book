@@ -195,7 +195,8 @@
      #(safe? k %)
      (mapcat
       (fn [rest-of-queens]
-        (map #(adjoin-position % k rest-of-queens)
+        (map (fn [new-row]
+               (adjoin-position new-row k rest-of-queens))
               (enumerate-intervalv 1 board-size)))
       (queen-cols board-size (- k 1))))))
 
