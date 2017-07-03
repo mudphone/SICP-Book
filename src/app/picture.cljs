@@ -1,19 +1,19 @@
 (ns app.picture)
 
 ;; FRAME
-(defrecord Frame [v-origin v-edge1 vedge2])
+(defrecord Frame [origin edge1 edge2])
 
-(defn make-frame [v-origin v-edge1 v-edge2]
-  (map->Frame {:v-origin v-origin :v-edge1 v-edge1 :v-edge2 v-edge2}))
+(defn make-frame [origin edge1 edge2]
+  (map->Frame {:origin origin :edge1 edge1 :edge2 edge2}))
 
 (defn origin-frame [frame]
-  (:v-origin frame))
+  (:origin frame))
 
 (defn edge1-frame [frame]
-  (:v-edge1 frame))
+  (:edge1 frame))
 
 (defn edge2-frame [frame]
-  (:v-edge2 frame))
+  (:edge2 frame))
 
 ;; VECTOR
 (defn make-vect [x y] [x y])

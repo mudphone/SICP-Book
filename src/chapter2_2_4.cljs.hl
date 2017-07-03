@@ -16,4 +16,12 @@
     (ul
       (a-item "(add-vect (make-vect 1 2) (make-vect 3 4)) = " (cell= c2-2-4/add-v12-v34))
       (a-item "(sub-vect (make-vect 1 2) (make-vect 3 4)) = " (cell= c2-2-4/sub-v12-v34))
-      (a-item "(scale-vect 10 (make-vect 1 2)) = " (cell= c2-2-4/scale-10-v12)))))
+      (a-item "(scale-vect 10 (make-vect 1 2)) = " (cell= c2-2-4/scale-10-v12)))
+    (h2 "Exercise 2.47")
+    (ul
+      (a-item "(origin-frame-list (make-frame-list [0 0] [1 0] [1 1])) = " (cell= c2-2-4/origin-list-00-10-11))
+      (a-item "(edge1-frame-list (make-frame-list [0 0] [1 0] [1 1])) = " (cell= c2-2-4/edge1-list-00-10-11))
+      (a-item "(edge2-frame-list (make-frame-list [0 0] [1 0] [1 1])) = " (cell= c2-2-4/edge2-list-00-10-11))
+      (a-item "(origin-frame-cons (make-frame-cons [0 0] [1 0] [1 1])) = " (cell= c2-2-4/origin-cons-00-10-11))
+      (a-item "(edge1-frame-cons (make-frame-cons [0 0] [1 0] [1 1])) = " (cell= c2-2-4/edge1-cons-00-10-11))
+      (a-item "(edge2-frame-cons (make-frame-cons [0 0] [1 0] [1 1])) = " (cell= c2-2-4/edge2-cons-00-10-11)))))

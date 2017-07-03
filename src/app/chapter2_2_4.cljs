@@ -1,5 +1,6 @@
 (ns app.chapter2-2-4
   (:require
+   [app.pair :as pair]
    [app.picture :as p]
    [javelin.core :refer [defc]]))
 
@@ -78,3 +79,41 @@
                    (p/sub-vect (p/make-vect 1 2) (p/make-vect 3 4))))
 (defc scale-10-v12 (p/vect-str
                     (p/scale-vect 10 (p/make-vect 1 2))))
+
+;; Exercise 2.47
+(defn make-frame-list [origin edge1 edge2]
+  (pair/list' origin edge1 edge2))
+
+(defn origin-frame-list [frame]
+  (pair/car' frame))
+
+(defn edge1-frame-list [frame]
+  (pair/cadr' frame))
+
+(defn edge2-frame-list [frame]
+  (pair/caddr' frame))
+
+(def frame-list (make-frame-list [0 0] [1 0] [1 1]))
+(defc origin-list-00-10-11 (str
+                            (origin-frame-list frame-list)))
+(defc edge1-list-00-10-11 (str
+                           (edge1-frame-list frame-list)))
+(defc edge2-list-00-10-11 (str
+                           (edge2-frame-list frame-list)))
+
+(defn make-frame-cons [origin edge1 edge2]
+  (pair/cons' origin (pair/cons' edge1 edge2)))
+
+(def origin-frame-cons origin-frame-list)
+(def edge1-frame-cons edge1-frame-list)
+
+(defn edge2-frame-cons [frame]
+  (pair/cddr' frame))
+
+(def frame-cons (make-frame-cons [0 0] [1 0] [1 1]))
+(defc origin-cons-00-10-11 (str
+                            (origin-frame-cons frame-cons)))
+(defc edge1-cons-00-10-11 (str
+                           (edge1-frame-cons frame-cons)))
+(defc edge2-cons-00-10-11 (str
+                           (edge2-frame-cons frame-cons)))
