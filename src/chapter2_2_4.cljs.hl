@@ -1,0 +1,17 @@
+(page "chapter2-2-4.html"
+  (:require
+   [javelin.core :refer [cell=]]
+   [app.elements :refer [a-item]]
+   [app.point :refer [point-str]]
+   [app.chapter2-2-4 :as c2-2-4]))
+
+;;(js/jQuery #(c2-1-2/draw-ex-2-2))
+
+(html
+  (head
+    (link :rel "stylesheet" :href "app.css"))
+  (body
+    (h1 "Chapter 2.2.4")
+    (h2 "Exercise 2.45")
+    (ul
+      (a-item "() = " ))))
