@@ -1,5 +1,6 @@
 (ns app.chapter2-2-4
   (:require
+   [app.picture :as p]
    [javelin.core :refer [defc]]))
 
 (declare beside)
@@ -70,3 +71,10 @@
 (def right-split2 (split beside below))
 (def up-split2    (split below beside))
 
+;; Exercise 2.46
+(defc add-v12-v34 (p/vect-str
+                   (p/add-vect (p/make-vect 1 2) (p/make-vect 3 4))))
+(defc sub-v12-v34 (p/vect-str
+                   (p/sub-vect (p/make-vect 1 2) (p/make-vect 3 4))))
+(defc scale-10-v12 (p/vect-str
+                    (p/scale-vect 10 (p/make-vect 1 2))))

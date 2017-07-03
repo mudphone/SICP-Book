@@ -12,6 +12,8 @@
     (link :rel "stylesheet" :href "app.css"))
   (body
     (h1 "Chapter 2.2.4")
-    (h2 "Exercise 2.45")
+    (h2 "Exercise 2.46")
     (ul
-      (a-item "() = " ))))
+      (a-item "(add-vect (make-vect 1 2) (make-vect 3 4)) = " (cell= c2-2-4/add-v12-v34))
+      (a-item "(sub-vect (make-vect 1 2) (make-vect 3 4)) = " (cell= c2-2-4/sub-v12-v34))
+      (a-item "(scale-vect 10 (make-vect 1 2)) = " (cell= c2-2-4/scale-10-v12)))))
