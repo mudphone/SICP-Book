@@ -46,4 +46,20 @@
     (let [id "ex2.49d"
           _ (js/jQuery #(c2-2-4/draw-2-49d id))]
       (canvas :id id :height 100 :width 400))
+    (h2 "Exercise 2.50")
+    (ul
+      (a-item "Draw P"))
+    (let [id "ex2.50-draw-p"
+          _ (js/jQuery #(c2-2-4/draw-2-50-p id))]
+      (canvas :id id :height 100 :width 400))
+    (ul
+      (a-item "Rotate 90"))
+    (let [id "ex2.50-rotate90"
+          _ (js/jQuery #(c2-2-4/draw-2-50-rotate90 id))]
+      (canvas :id id :height 100 :width 400))
+    (ul
+      (a-item "Beside"))
+    (let [id "ex2.50-beside"
+          _ (js/jQuery #(c2-2-4/draw-2-50-beside id))]
+      (canvas :id id :height 100 :width 400))
     ))

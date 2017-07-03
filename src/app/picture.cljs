@@ -34,15 +34,6 @@
   (make-vect (* k (xcor-vect v))
              (* k (ycor-vect v))))
 
-(defn frame-coord-map [frame]
-  (fn [v]
-    (add-vect
-     (origin-frame frame)
-     (add-vect (scale-vect (xcor-vect v)
-                           (edge1-frame frame))
-               (scale-vect (ycor-vect v)
-                           (edge2-frame frame))))))
-
 ;; SEGMENT
 (defn make-segment [v1 v2]
   (make-vect v1 v2))
@@ -54,9 +45,6 @@
   (ycor-vect segment))
 
 ;; LINE
-(def CANVAS-HEIGHT 400)
-(def CANVAS-WIDTH 400)
-
 (defn canvas [id]
   (.getElementById js/document id))
 
@@ -88,9 +76,74 @@
      ctx)))
 
 ;; PAINTING
+(defn frame-coord-map [frame]
+  (fn [v]
+    (add-vect
+     (origin-frame frame)
+     (add-vect (scale-vect (ycor-vect v)
+                           (edge1-frame frame))
+               (scale-vect (xcor-vect v)
+                           (edge2-frame frame))))))
+
 (defn segments->painter [segment-list]
   (fn [frame]
     (doseq [segment segment-list]
      (draw-line
         ((frame-coord-map frame) (start-segment segment))
         ((frame-coord-map frame) (end-segment segment))))))
+
+;; PAINTER TRANSFORMATION
+(defn transform-painter [painter origin corner1 corner2]
+  (fn [frame]
+    (let [m (frame-coord-map frame)
+          new-origin (m origin)]
+      (painter
+       (make-frame new-origin
+                   (sub-vect (m corner2) new-origin)
+                   (sub-vect (m corner1) new-origin))))))
+
+(defn flip-vert [painter]
+  (transform-painter painter
+                     (make-vect 0.0 1.0)   ; new origin
+                     (make-vect 1.0 1.0)   ; new end of edge1
+                     (make-vect 0.0 0.0))) ; new end of edge2
+
+(defn shrink-to-upper-right [painter]
+  (transform-painter painter
+                     (make-vect 0.5 0.5)
+                     (make-vect 1.0 0.5)
+                     (make-vect 0.5 1.0)))
+
+(defn rotate90 [painter]
+  (transform-painter painter
+                     (make-vect 1.0 0.0)
+                     (make-vect 1.0 1.0)
+                     (make-vect 0.0 0.0)))
+
+(defn rotate180 [painter]
+  (let [r (comp rotate90 rotate90)]
+    (r painter)))
+
+(defn rotate270 [painter]
+  (let [r (comp rotate90 rotate90 rotate90)]
+    (r painter)))
+
+(defn squash-inwards [painter]
+  (transform-painter painter
+                     (make-vect 0.0 0.0)
+                     (make-vect 0.65 0.35)
+                     (make-vect 0.35 0.65)))
+
+(defn beside [painter1 painter2]
+  (let [split-point (make-vect 0.5 0.0)
+        paint-left (transform-painter painter1
+                                      (make-vect 0.0 0.0)
+                                      split-point
+                                      (make-vect 0.0 1.0))
+        paint-right (transform-painter painter2
+                                       split-point
+                                       (make-vect 1.0 0.0)
+                                       (make-vect 0.5 1.0))]
+    (fn [frame]
+      (paint-left frame)
+      (paint-right frame))))

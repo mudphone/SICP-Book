@@ -1,11 +1,10 @@
 (ns app.chapter2-2-4
   (:require
    [app.pair :as pair]
-   [app.picture :as p :refer [make-frame make-segment make-vect
+   [app.picture :as p :refer [beside make-frame make-segment make-vect
                               segments->painter set-canvas-context]]
    [javelin.core :refer [defc]]))
 
-(declare beside)
 (declare below)
 (declare flip-vert)
 (declare flip-horiz)
@@ -186,10 +185,40 @@
    (make-segment (make-vect 0.597 0.442) (make-vect 0.999 0.144))])
 
 (defn wave [frame]
+  ((p/rotate180 (segments->painter wave-segments)) frame))
+#_(defn wave [frame]
   ((segments->painter wave-segments) frame))
+
 
 (defn draw-2-49d [id]
   (set-canvas-context id)
   (wave (make-frame (make-vect 0 0)
+                    (make-vect 0 40)
+                    (make-vect 100 0))))
+
+;; Exercise 2.50
+(defn draw-p [frame]
+  ((segments->painter [(make-segment (make-vect 0.1 0.1) (make-vect 0.9 0.1))
+                       (make-segment (make-vect 0.9 0.1) (make-vect 0.9 0.5))
+                       (make-segment (make-vect 0.9 0.5) (make-vect 0.1 0.5))
+                       (make-segment (make-vect 0.1 0.1) (make-vect 0.1 0.9))]) frame))
+
+(defn draw-2-50-p [id]
+  (set-canvas-context id)
+  (draw-p (make-frame (make-vect 0 0)
+                      (make-vect 0 40)
+                      (make-vect 100 0))))
+
+(defn draw-2-50-rotate90 [id]
+  (set-canvas-context id)
+  ((p/rotate90 wave)
+   (make-frame (make-vect 0 0)
+               (make-vect 0 40)
+               (make-vect 100 0))))
+
+(defn draw-2-50-beside [id]
+  (set-canvas-context id)
+  ((beside wave wave)
+   (make-frame (make-vect 0 0)
                     (make-vect 0 40)
                     (make-vect 100 0))))
