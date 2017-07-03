@@ -1,7 +1,8 @@
 (ns app.chapter2-2-4
   (:require
    [app.pair :as pair]
-   [app.picture :as p]
+   [app.picture :as p :refer [make-frame make-segment make-vect
+                              segments->painter set-canvas-context]]
    [javelin.core :refer [defc]]))
 
 (declare beside)
@@ -117,3 +118,78 @@
                            (edge1-frame-cons frame-cons)))
 (defc edge2-cons-00-10-11 (str
                            (edge2-frame-cons frame-cons)))
+
+;; Exercise 2.48 see app.picture
+
+;; Exercise 2.49
+;; a.  The painter that draws the outline of the designated frame.
+(defn outline [frame]
+  (let [painter (segments->painter
+                 [(make-segment (make-vect 0 0) (make-vect 0 1))
+                  (make-segment (make-vect 0 1) (make-vect 1 1))
+                  (make-segment (make-vect 1 1) (make-vect 1 0))
+                  (make-segment (make-vect 1 0) (make-vect 0 0))])]
+    (painter frame)))
+
+(defn draw-2-49a [id]
+  (set-canvas-context id)
+  (outline (make-frame (make-vect 0 0)
+                       (make-vect 0 40)
+                       (make-vect 100 0))))
+
+;; b.  The painter that draws an ``X'' by connecting opposite corners of the frame.
+(defn draw-x [frame]
+  (let [painter (segments->painter
+                 [(make-segment (make-vect 0 0) (make-vect 1 1))
+                  (make-segment (make-vect 0 1) (make-vect 1 0))])]
+    (painter frame)))
+
+(defn draw-2-49b [id]
+  (set-canvas-context id)
+  (draw-x (make-frame (make-vect 0 0)
+                      (make-vect 0 40)
+                      (make-vect 100 0))))
+
+;; c.  The painter that draws a diamond shape by connecting the midpoints of the sides of the frame.
+(defn diamond [frame]
+  (let [painter (segments->painter
+                 [(make-segment (make-vect 0 0.5) (make-vect 0.5 1))
+                  (make-segment (make-vect 0 0.5) (make-vect 0.5 0))
+                  (make-segment (make-vect 1 0.5) (make-vect 0.5 1))
+                  (make-segment (make-vect 1 0.5) (make-vect 0.5 0))])]
+    (painter frame)))
+
+(defn draw-2-49c [id]
+  (set-canvas-context id)
+  (diamond (make-frame (make-vect 0 0)
+                       (make-vect 0 40)
+                       (make-vect 100 0))))
+
+;; d.  The wave painter.
+(def wave-segments
+  [(make-segment (make-vect 0.006 0.840) (make-vect 0.155 0.591))
+   (make-segment (make-vect 0.006 0.635) (make-vect 0.155 0.392))
+   (make-segment (make-vect 0.304 0.646) (make-vect 0.155 0.591))
+   (make-segment (make-vect 0.298 0.591) (make-vect 0.155 0.392))
+   (make-segment (make-vect 0.304 0.646) (make-vect 0.403 0.646))
+   (make-segment (make-vect 0.298 0.591) (make-vect 0.354 0.492))
+   (make-segment (make-vect 0.403 0.646) (make-vect 0.348 0.845))
+   (make-segment (make-vect 0.354 0.492) (make-vect 0.249 0.000))
+   (make-segment (make-vect 0.403 0.000) (make-vect 0.502 0.293))
+   (make-segment (make-vect 0.502 0.293) (make-vect 0.602 0.000))
+   (make-segment (make-vect 0.348 0.845) (make-vect 0.403 0.999))
+   (make-segment (make-vect 0.602 0.999) (make-vect 0.652 0.845))
+   (make-segment (make-vect 0.652 0.845) (make-vect 0.602 0.646))
+   (make-segment (make-vect 0.602 0.646) (make-vect 0.751 0.646))
+   (make-segment (make-vect 0.751 0.646) (make-vect 0.999 0.343))
+   (make-segment (make-vect 0.751 0.000) (make-vect 0.597 0.442))
+   (make-segment (make-vect 0.597 0.442) (make-vect 0.999 0.144))])
+
+(defn wave [frame]
+  ((segments->painter wave-segments) frame))
+
+(defn draw-2-49d [id]
+  (set-canvas-context id)
+  (wave (make-frame (make-vect 0 0)
+                    (make-vect 0 40)
+                    (make-vect 100 0))))
